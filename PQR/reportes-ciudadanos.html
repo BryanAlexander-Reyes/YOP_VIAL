@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reportes Ciudadanos · Yopal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<style>
+:root {
+  --blue-50:  #E6F1FB;
+  --blue-100: #B5D4F4;
+  --blue-200: #85B7EB;
+  --blue-400: #378ADD;
+  --blue-600: #185FA5;
+  --blue-800: #0C447C;
+  --blue-900: #042C53;
+  --green-50:  #EAF3DE;
+  --green-100: #C0DD97;
+  --green-400: #639922;
+  --green-600: #3B6D11;
+  --green-800: #27500A;
+  --red-50:   #FCEBEB;
+  --red-400:  #E24B4A;
+  --red-600:  #A32D2D;
+  --red-800:  #791F1F;
+  --amber-50:  #FAEEDA;
+  --amber-400: #EF9F27;
+  --amber-600: #854F0B;
+  --amber-800: #633806;
+  --gray-50:  #F5F6F8;
+  --gray-100: #ECEEF2;
+  --gray-200: #D6DAE2;
+  --gray-400: #8892A0;
+  --gray-600: #546070;
+  --gray-800: #2C3A4A;
+  --gray-900: #1A2332;
+  --bg:         #F0F3F8;
+  --surface:    #FFFFFF;
+  --surface-2:  #F8FAFD;
+  --border:     rgba(24,95,165,0.10);
+  --border-md:  rgba(24,95,165,0.18);
+  --border-str: rgba(24,95,165,0.28);
+  --text:       #1A2332;
+  --muted:      #546070;
+  --muted-lt:   #8892A0;
+  --radius-xs:  6px;
+  --radius-sm:  10px;
+  --radius-md:  14px;
+  --radius-lg:  18px;
+  --radius-xl:  24px;
+  --shadow-sm: 0 1px 3px rgba(24,95,165,0.07), 0 1px 2px rgba(24,95,165,0.05);
+  --shadow-md: 0 4px 12px rgba(24,95,165,0.10), 0 2px 4px rgba(24,95,165,0.06);
+  --shadow-lg: 0 8px 24px rgba(24,95,165,0.12), 0 4px 8px rgba(24,95,165,0.08);
+  --transition: 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2.5px solid var(--blue-400); outline-offset: 2px; border-radius: var(--radius-xs); }
+.app-header { background: var(--blue-900); padding: 0 32px; height: 58px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(4,44,83,0.35); }
+.header-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.header-icon-wrap { width: 30px; height: 30px; border-radius: 8px; background: var(--blue-400); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.header-icon-wrap i { font-size: 16px; color: #fff; }
+.header-title { font-size: 15px; font-weight: 600; color: #fff; letter-spacing: -0.2px; }
+.header-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.15); margin: 0 2px; }
+.header-loc { font-size: 12.5px; color: rgba(255,255,255,0.65); display: flex; align-items: center; gap: 5px; }
+.header-loc i { font-size: 13px; color: var(--green-100); }
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.btn-primary { display: flex; align-items: center; gap: 6px; padding: 8px 18px; background: var(--blue-400); color: #fff; border: none; border-radius: 50px; font-size: 13px; font-family: inherit; font-weight: 500; cursor: pointer; transition: background var(--transition), transform var(--transition), box-shadow var(--transition); box-shadow: 0 2px 8px rgba(55,138,221,0.35); }
+.btn-primary:hover { background: var(--blue-600); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(55,138,221,0.45); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary i { font-size: 15px; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; cursor: pointer; transition: background var(--transition); }
+.avatar:hover { background: rgba(255,255,255,0.22); }
+.header-nav-back { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 500; text-decoration: none; padding: 7px 14px 7px 12px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.22); white-space: nowrap; transition: background var(--transition), border-color var(--transition), color var(--transition); }
+.header-nav-back i { font-size: 14px; }
+.header-nav-back:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: #fff; }
+@media (max-width: 600px) { .header-nav-back span { display: none; } .header-nav-back { padding: 7px 10px; } }
+.page { flex: 1; padding: 28px 32px; max-width: 1100px; margin: 0 auto; width: 100%; }
+#view-lista { display: block; }
+#view-form  { display: none; }
+.page-heading { margin-bottom: 22px; }
+.page-heading h1 { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.4px; }
+.page-heading p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px 20px; box-shadow: var(--shadow-sm); transition: box-shadow var(--transition), transform var(--transition); position: relative; overflow: hidden; }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius-md) var(--radius-md) 0 0; background: var(--card-accent, var(--blue-400)); }
+.stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.stat-card.accent-blue  { --card-accent: var(--blue-400); }
+.stat-card.accent-red   { --card-accent: var(--red-400); }
+.stat-card.accent-green { --card-accent: var(--green-400); }
+.stat-card.accent-amber { --card-accent: var(--amber-400); }
+.stat-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.stat-icon { width: 38px; height: 38px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.si-blue   { background: var(--blue-50);   color: var(--blue-600); }
+.si-red    { background: var(--red-50);    color: var(--red-600); }
+.si-green  { background: var(--green-50);  color: var(--green-600); }
+.si-amber  { background: var(--amber-50);  color: var(--amber-600); }
+.stat-val { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -1.5px; color: var(--text); }
+.stat-val.val-red   { color: var(--red-600); }
+.stat-val.val-amber { color: var(--amber-600); }
+.stat-val.val-blue  { color: var(--blue-600); }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.stat-trend { font-size: 11px; font-weight: 500; display: flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 50px; }
+.trend-up     { background: var(--green-50);  color: var(--green-600); }
+.trend-warn   { background: var(--amber-50);  color: var(--amber-600); }
+.trend-danger { background: var(--red-50);    color: var(--red-600); }
+.trend-info   { background: var(--blue-50);   color: var(--blue-600); }
+.toolbar { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap input { width: 100%; padding: 9px 14px 9px 38px; border: 1.5px solid var(--border-md); border-radius: var(--radius-sm); font-size: 13px; font-family: inherit; background: var(--surface); color: var(--text); outline: none; transition: border-color var(--transition), box-shadow var(--transition); box-shadow: var(--shadow-sm); }
+.search-wrap input:focus { border-color: var(--blue-400); box-shadow: 0 0 0 3px rgba(55,138,221,0.12); }
+.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; color: var(--muted-lt); pointer-events: none; }
+.search-wrap input::placeholder { color: var(--muted-lt); }
+.filters { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
+.filter-pill { padding: 6px 14px; border: 1.5px solid var(--border-md); border-radius: 50px; font-size: 12px; color: var(--muted); background: var(--surface); cursor: pointer; transition: all var(--transition); font-family: inherit; font-weight: 500; display: flex; align-items: center; gap: 5px; box-shadow: var(--shadow-sm); }
+.filter-pill i { font-size: 13px; }
+.filter-pill:hover { border-color: var(--blue-400); color: var(--blue-600); background: var(--blue-50); }
+.filter-pill.active { background: var(--blue-800); border-color: var(--blue-800); color: #fff; box-shadow: 0 2px 8px rgba(12,68,124,0.28); }
+.main-grid { display: grid; grid-template-columns: 1fr 294px; gap: 18px; align-items: start; }
+.cards-list { display: flex; flex-direction: column; gap: 10px; }
+.report-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0; display: flex; flex-direction: column; transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition); cursor: pointer; box-shadow: var(--shadow-sm); overflow: hidden; }
+.report-card:hover { border-color: var(--blue-200); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card-accent-strip { height: 4px; width: 100%; flex-shrink: 0; }
+.strip-critico { background: linear-gradient(90deg, var(--red-400), var(--red-600)); }
+.strip-alto    { background: linear-gradient(90deg, var(--amber-400), var(--amber-600)); }
+.strip-medio   { background: linear-gradient(90deg, var(--blue-400), var(--blue-600)); }
+.strip-bajo    { background: linear-gradient(90deg, var(--gray-200), var(--gray-400)); }
+.card-inner { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-title { font-size: 14px; font-weight: 600; line-height: 1.45; color: var(--text); flex: 1; }
+.badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 50px; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.2px; }
+.badge-critico { background: var(--red-50);   color: var(--red-600); }
+.badge-alto    { background: var(--amber-50); color: var(--amber-600); }
+.badge-medio   { background: var(--blue-50);  color: var(--blue-600); }
+.badge-bajo    { background: var(--gray-100); color: var(--gray-600); }
+.card-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+.meta-item { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+.meta-item i { font-size: 13px; color: var(--muted-lt); }
+.cat-pill { font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 50px; background: var(--blue-50); border: 1px solid var(--blue-100); color: var(--blue-800); }
+.card-desc { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--border); }
+.card-chips { display: flex; gap: 5px; flex-wrap: wrap; }
+.dest-chip { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 50px; background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); display: flex; align-items: center; gap: 4px; }
+.dest-chip i { font-size: 12px; }
+.card-votes { font-size: 12px; font-weight: 600; color: var(--blue-600); display: flex; align-items: center; gap: 5px; }
+.card-votes i { font-size: 15px; color: var(--blue-400); }
+.empty-state { text-align: center; padding: 52px 24px; color: var(--muted); }
+.empty-state i { font-size: 44px; display: block; margin-bottom: 12px; color: var(--muted-lt); }
+.empty-state p { font-size: 13.5px; }
+.new-card-btn { background: var(--surface); border: 1.5px dashed var(--border-md); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; gap: 10px; padding: 18px; cursor: pointer; transition: all var(--transition); color: var(--muted); font-size: 13px; font-family: inherit; font-weight: 500; margin-top: 4px; box-shadow: var(--shadow-sm); }
+.new-card-btn:hover { border-color: var(--blue-400); background: var(--blue-50); color: var(--blue-800); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.new-card-btn i { font-size: 18px; }
+.sidebar { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 74px; }
+.side-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+.side-panel-head { padding: 13px 16px; border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 600; color: var(--text); display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); }
+.side-panel-head span { color: var(--muted-lt); font-weight: 400; font-size: 11px; }
+.side-panel-body { padding: 14px 16px; }
+.bar-block { margin-bottom: 11px; }
+.bar-block:last-child { margin-bottom: 0; }
+.bar-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.bar-label b { color: var(--text); font-weight: 600; }
+.bar-track { height: 6px; border-radius: 50px; background: var(--gray-100); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 50px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
+.activity-list { display: flex; flex-direction: column; }
+.act-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+.act-item:last-child { border-bottom: none; }
+.act-dot-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; padding-top: 2px; }
+.act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.act-text { font-size: 12px; color: var(--text); line-height: 1.55; }
+.act-time { font-size: 11px; color: var(--muted-lt); margin-top: 3px; }
+.channel-list { display: flex; flex-direction: column; gap: 9px; }
+.ch-row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: var(--muted); padding: 7px 10px; border-radius: var(--radius-xs); background: var(--surface-2); border: 1px solid var(--border); }
+.ch-row i { font-size: 17px; }
+.ch-count { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--text); }
+.form-wrap { max-width: 740px; margin: 0 auto; }
+.back-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); background: none; border: none; cursor: pointer; font-family: inherit; margin-bottom: 20px; padding: 6px 12px 6px 8px; border-radius: var(--radius-sm); transition: all var(--transition); font-weight: 500; }
+.back-btn:hover { color: var(--text); background: var(--surface); }
+.back-btn i { font-size: 17px; }
+.form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+.form-card-head { padding: 22px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 100%); }
+.form-title { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+.form-subtitle { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+.form-peticion { font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 50px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); font-family: 'Courier New', monospace; letter-spacing: 0.5px; }
+.form-body { padding: 26px 28px; display: flex; flex-direction: column; gap: 22px; }
+.field {}
+.field label { display: block; font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: 0.1px; }
+.field input, .field select, .field textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-md); border-radius: var(--radius-sm); font-size: 13px; font-family: inherit; background: var(--surface); color: var(--text); outline: none; transition: border-color var(--transition), box-shadow var(--transition); box-shadow: var(--shadow-sm); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue-400); box-shadow: 0 0 0 3px rgba(55,138,221,0.12); }
+.field input::placeholder, .field textarea::placeholder { color: var(--muted-lt); }
+.field textarea { resize: vertical; min-height: 104px; line-height: 1.65; }
+.field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23546070' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 36px; cursor: pointer; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.char-hint { display: flex; justify-content: space-between; margin-top: 6px; }
+.char-hint span { font-size: 11px; color: var(--muted-lt); }
+.char-hint span.warn { color: var(--amber-600); }
+.prob-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.prob-btn { padding: 14px 10px 12px; border: 1.5px solid var(--border-md); border-radius: var(--radius-sm); font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; background: var(--surface); color: var(--muted); font-family: inherit; transition: all var(--transition); display: flex; flex-direction: column; align-items: center; gap: 7px; box-shadow: var(--shadow-sm); }
+.prob-btn i { font-size: 22px; }
+.prob-btn:hover { background: var(--blue-50); border-color: var(--blue-400); color: var(--blue-800); }
+.prob-btn.selected { background: var(--blue-50); border-color: var(--blue-600); color: var(--blue-800); box-shadow: 0 0 0 3px rgba(24,95,165,0.10), var(--shadow-sm); }
+.prob-btn.selected i { color: var(--blue-600); }
+.grav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.grav-btn { padding: 12px 8px 10px; border: 1.5px solid var(--border-md); border-radius: var(--radius-sm); font-size: 11.5px; font-weight: 600; cursor: pointer; text-align: center; background: var(--surface); color: var(--muted); font-family: inherit; transition: all var(--transition); display: flex; flex-direction: column; align-items: center; gap: 6px; box-shadow: var(--shadow-sm); }
+.grav-btn i { font-size: 20px; }
+.grav-hint { font-size: 11.5px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+.grav-btn.sel-critico { background: var(--red-50);   border-color: var(--red-400);   color: var(--red-600);   box-shadow: 0 0 0 3px rgba(226,75,74,0.10); }
+.grav-btn.sel-alto    { background: var(--amber-50); border-color: var(--amber-400); color: var(--amber-600); box-shadow: 0 0 0 3px rgba(239,159,39,0.10); }
+.grav-btn.sel-medio   { background: var(--blue-50);  border-color: var(--blue-400);  color: var(--blue-600);  box-shadow: 0 0 0 3px rgba(55,138,221,0.10); }
+.grav-btn.sel-bajo    { background: var(--gray-100); border-color: var(--gray-400);  color: var(--gray-600);  box-shadow: 0 0 0 3px rgba(136,146,160,0.10); }
+.upload-zone { border: 1.5px dashed var(--border-str); border-radius: var(--radius-sm); padding: 24px; text-align: center; cursor: pointer; background: var(--surface-2); transition: all var(--transition); }
+.upload-zone:hover { border-color: var(--blue-400); background: var(--blue-50); }
+.upload-zone i { font-size: 28px; color: var(--muted-lt); }
+.upload-zone p { font-size: 12px; color: var(--muted); margin-top: 7px; line-height: 1.5; }
+.upload-zone input[type=file] { display: none; }
+.file-preview { font-size: 12px; color: var(--blue-600); margin-top: 8px; font-weight: 600; }
+
+/* ─── DESTINOS ─── */
+.destinos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+.destino-item { display: flex; align-items: center; gap: 10px; padding: 13px 14px; border: 1.5px solid var(--border-md); border-radius: var(--radius-sm); cursor: pointer; background: var(--surface); transition: all var(--transition); user-select: none; box-shadow: var(--shadow-sm); }
+.destino-item:hover { background: var(--gray-50); border-color: var(--gray-200); }
+.destino-item.on { border-color: var(--blue-400); background: var(--blue-50); box-shadow: 0 0 0 2px rgba(55,138,221,0.12); }
+.destino-item.on .d-icon { color: var(--blue-600); }
+.destino-item.on .d-name { color: var(--blue-800); }
+.d-icon { font-size: 20px; color: var(--muted-lt); transition: color var(--transition); flex-shrink: 0; }
+.d-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.d-name { font-size: 13px; color: var(--muted); font-weight: 600; transition: color var(--transition); }
+.d-sub { font-size: 10.5px; color: var(--muted-lt); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.d-check { margin-left: auto; font-size: 15px; color: var(--blue-400); opacity: 0; transition: opacity var(--transition), transform var(--transition); transform: scale(0.6); flex-shrink: 0; }
+.destino-item.on .d-check { opacity: 1; transform: scale(1); }
+
+.preview-box { background: var(--surface-2); border: 1.5px solid var(--border-md); border-radius: var(--radius-sm); padding: 16px 18px; font-size: 12.5px; color: var(--muted); line-height: 1.8; min-height: 90px; }
+.preview-box strong { color: var(--text); font-weight: 600; }
+.preview-link { color: var(--blue-600); font-weight: 500; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 2px 0; }
+.section-label { font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 0.3px; text-transform: uppercase; }
+.form-footer { padding: 18px 28px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; background: var(--surface-2); }
+.btn-cancel { padding: 9px 22px; border: 1.5px solid var(--border-str); border-radius: 50px; font-size: 13px; font-weight: 500; background: var(--surface); color: var(--muted); cursor: pointer; font-family: inherit; transition: all var(--transition); box-shadow: var(--shadow-sm); }
+.btn-cancel:hover { background: var(--gray-50); color: var(--text); border-color: var(--gray-400); }
+.btn-submit { padding: 9px 24px; border: none; border-radius: 50px; font-size: 13px; font-weight: 600; background: var(--blue-600); color: #fff; cursor: pointer; font-family: inherit; transition: all var(--transition); display: flex; align-items: center; gap: 7px; box-shadow: 0 2px 10px rgba(24,95,165,0.35); }
+.btn-submit:hover { background: var(--blue-800); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(24,95,165,0.4); }
+.btn-submit:active { transform: translateY(0); }
+.btn-submit i { font-size: 15px; }
+
+/* ─── MODAL ─── */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(4,44,83,0.55); backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.show { display: flex; animation: fadeIn 0.22s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal-box { background: var(--surface); border-radius: var(--radius-xl); padding: 36px 32px 28px; max-width: 460px; width: 100%; text-align: center; box-shadow: var(--shadow-lg); animation: slideUp 0.28s cubic-bezier(0.4,0,0.2,1); }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.modal-icon-wrap { width: 64px; height: 64px; border-radius: 50%; background: var(--green-50); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.modal-icon-wrap i { font-size: 34px; color: var(--green-400); }
+.modal-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+.modal-num { font-size: 13px; font-weight: 700; background: var(--blue-50); color: var(--blue-800); padding: 7px 18px; border-radius: 50px; display: inline-block; margin-bottom: 20px; font-family: 'Courier New', monospace; letter-spacing: 0.5px; border: 1px solid var(--blue-100); }
+
+/* Spinner fase publicando */
+.fase-wrap { display: flex; flex-direction: column; align-items: center; }
+.auto-spinner { position: relative; width: 64px; height: 64px; margin-bottom: 18px; }
+.spinner-ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--blue-100); border-top-color: var(--blue-400); animation: spin 0.9s linear infinite; }
+.spinner-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--blue-400); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.auto-progress-bar { width: 100%; height: 6px; background: var(--gray-100); border-radius: 99px; overflow: hidden; margin: 14px 0 8px; }
+.auto-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--blue-400), var(--green-400)); border-radius: 99px; transition: width 0.45s ease; }
+.auto-status { font-size: 12.5px; color: var(--muted); min-height: 18px; margin-bottom: 4px; }
+
+/* Canales resultado */
+.auto-canales-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin: 12px 0 8px; align-self: flex-start; }
+.auto-canales-list { width: 100%; display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.auto-canal-row { display: flex; align-items: center; gap: 11px; padding: 10px 13px; border-radius: var(--radius-sm); background: var(--gray-50); border: 1px solid var(--gray-100); font-size: 13px; font-weight: 500; color: var(--text); text-align: left; cursor: pointer; text-decoration: none; transition: background var(--transition), border-color var(--transition); }
+.auto-canal-row:hover { background: var(--blue-50); border-color: var(--blue-200); }
+.canal-icon { font-size: 20px; flex-shrink: 0; }
+.canal-label { flex: 1; }
+.canal-status { font-size: 11px; color: var(--green-400); font-weight: 700; margin-left: auto; }
+.canal-status.pendiente { color: var(--amber-600); }
+.auto-nota { font-size: 11.5px; color: var(--muted); background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: var(--radius-sm); padding: 9px 12px; display: flex; gap: 7px; align-items: flex-start; text-align: left; line-height: 1.55; margin-bottom: 16px; }
+.auto-nota i { font-size: 14px; color: var(--blue-400); flex-shrink: 0; margin-top: 1px; }
+.btn-volver { padding: 11px 32px; background: var(--blue-600); color: #fff; border: none; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all var(--transition); box-shadow: 0 2px 10px rgba(24,95,165,0.35); }
+.btn-volver:hover { background: var(--blue-800); transform: translateY(-1px); }
+
+.toast { position: fixed; bottom: 28px; right: 28px; background: var(--gray-900); color: #fff; padding: 12px 18px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 9px; z-index: 999; opacity: 0; transform: translateY(12px) scale(0.97); transition: all 0.28s cubic-bezier(0.4,0,0.2,1); pointer-events: none; box-shadow: var(--shadow-lg); max-width: 340px; }
+.toast.show { opacity: 1; transform: translateY(0) scale(1); }
+.toast i { font-size: 16px; flex-shrink: 0; }
+footer { background: linear-gradient(90deg, var(--blue-900) 0%, var(--blue-600) 50%, var(--green-600) 100%); height: 4px; margin-top: auto; }
+
+@media (max-width: 768px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .app-header { padding: 0 16px; }
+  .page { padding: 20px 16px; }
+  .form-body { padding: 20px 18px; }
+  .form-card-head { padding: 18px 20px; }
+  .form-footer { padding: 15px 20px; }
+  .row2, .grav-grid { grid-template-columns: 1fr 1fr; }
+  .destinos-grid { grid-template-columns: 1fr 1fr; }
+  .prob-grid { grid-template-columns: repeat(2, 1fr); }
+  .toast { right: 16px; bottom: 16px; left: 16px; max-width: none; }
+}
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row2, .grav-grid { grid-template-columns: 1fr; }
+  .header-loc { display: none; }
+}
+/*TODO el formulario sea 1 columna en móvil*/
+@media (max-width: 768px) {
+  .row2,
+  .grav-grid,
+  .destinos-grid,
+  .prob-grid {
+    grid-template-columns: 1fr !important;}
+}
+/* Botones de compartir (WhatsApp, Facebook, etc.)*/
+@media (max-width: 768px) {
+  .share-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* Evita que todo quede “apretado” (padding) */
+@media (max-width: 768px) {
+  .page {
+    padding: 12px !important;
+  }
+
+  .card,
+  .form-card {
+    border-radius: 12px;
+  }
+}
+/*Ajuste importante: botones grandes en móvil*/
+@media (max-width: 768px) {
+  button {
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header class="app-header" role="banner">
+  <div class="header-logo">
+    <div class="header-icon-wrap" aria-hidden="true"><i class="ti ti-map-2"></i></div>
+    <span class="header-title">Reportes ciudadanos</span>
+  </div>
+  <div class="header-sep" aria-hidden="true"></div>
+  <span class="header-loc" aria-label="Ubicación: Yopal, Casanare">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> Yopal, Casanare
+  </span>
+  <nav class="header-actions" aria-label="Navegación principal">
+    <a class="header-nav-back" href="../index.html" aria-label="Volver al inicio de Yopal Vial">
+      <i class="ti ti-arrow-left" aria-hidden="true"></i><span>Seguridad Vial</span>
+    </a>
+    <button class="btn-primary" onclick="mostrarFormulario()" aria-label="Crear nuevo reporte ciudadano">
+      <i class="ti ti-plus" aria-hidden="true"></i> Nuevo reporte
+    </button>
+    <div class="avatar" role="img" aria-label="Usuario: Sharith F.">SF</div>
+  </nav>
+</header>
+
+<!-- VISTA LISTA -->
+<main class="page" id="view-lista" role="main">
+  <div class="page-heading">
+    <h1>Panel ciudadano</h1>
+    <p>Seguimiento de problemas reportados en tu ciudad</p>
+  </div>
+  <div class="stats-row" role="region" aria-label="Estadísticas">
+    <div class="stat-card accent-blue">
+      <div class="stat-top">
+        <div><div class="stat-val val-blue" id="stat-total">4</div><div class="stat-label">Reportes activos</div></div>
+        <div class="stat-icon si-blue" aria-hidden="true"><i class="ti ti-file-description"></i></div>
+      </div>
+      <span class="stat-trend trend-info"><i class="ti ti-trending-up" style="font-size:11px" aria-hidden="true"></i> Este mes</span>
+    </div>
+    <div class="stat-card accent-red">
+      <div class="stat-top">
+        <div><div class="stat-val val-red" id="stat-criticos">1</div><div class="stat-label">Críticos</div></div>
+        <div class="stat-icon si-red" aria-hidden="true"><i class="ti ti-alert-triangle"></i></div>
+      </div>
+      <span class="stat-trend trend-danger"><i class="ti ti-alert-circle" style="font-size:11px" aria-hidden="true"></i> Requieren atención</span>
+    </div>
+    <div class="stat-card accent-green">
+      <div class="stat-top">
+        <div><div class="stat-val" id="stat-apoyos">225</div><div class="stat-label">Apoyos totales</div></div>
+        <div class="stat-icon si-green" aria-hidden="true"><i class="ti ti-thumb-up"></i></div>
+      </div>
+      <span class="stat-trend trend-up"><i class="ti ti-users" style="font-size:11px" aria-hidden="true"></i> Ciudadanos</span>
+    </div>
+    <div class="stat-card accent-amber">
+      <div class="stat-top">
+        <div><div class="stat-val val-amber" id="stat-pendientes">3</div><div class="stat-label">Pendientes</div></div>
+        <div class="stat-icon si-amber" aria-hidden="true"><i class="ti ti-clock"></i></div>
+      </div>
+      <span class="stat-trend trend-warn"><i class="ti ti-clock" style="font-size:11px" aria-hidden="true"></i> En revisión</span>
+    </div>
+  </div>
+  <div class="main-grid">
+    <div>
+      <div class="toolbar">
+        <div class="search-wrap" role="search">
+          <i class="ti ti-search search-icon" aria-hidden="true"></i>
+          <input type="text" placeholder="Buscar reporte..." id="search-input" oninput="renderLista()" aria-label="Buscar reportes" />
+        </div>
+      </div>
+      <nav class="filters" aria-label="Filtrar por categoría">
+        <button class="filter-pill active" onclick="setFiltro('todos',this)" aria-pressed="true"><i class="ti ti-list" aria-hidden="true"></i>Todos</button>
+        <button class="filter-pill" onclick="setFiltro('vial',this)" aria-pressed="false"><i class="ti ti-road" aria-hidden="true"></i>Vial</button>
+        <button class="filter-pill" onclick="setFiltro('seguridad',this)" aria-pressed="false"><i class="ti ti-shield" aria-hidden="true"></i>Seguridad</button>
+        <button class="filter-pill" onclick="setFiltro('infraestructura',this)" aria-pressed="false"><i class="ti ti-building-bridge" aria-hidden="true"></i>Infraestructura</button>
+        <button class="filter-pill" onclick="setFiltro('ambiente',this)" aria-pressed="false"><i class="ti ti-leaf" aria-hidden="true"></i>Ambiente</button>
+        <button class="filter-pill" onclick="setFiltro('salud',this)" aria-pressed="false"><i class="ti ti-heart-rate-monitor" aria-hidden="true"></i>Salud</button>
+        <button class="filter-pill" onclick="setFiltro('critico',this)" aria-pressed="false"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Solo críticos</button>
+      </nav>
+      <div class="cards-list" id="cards-container" role="list" aria-label="Lista de reportes"></div>
+    </div>
+    <aside class="sidebar" aria-label="Panel lateral">
+      <div class="side-panel">
+        <div class="side-panel-head">Distribución por gravedad</div>
+        <div class="side-panel-body">
+          <div class="bar-block"><div class="bar-label"><span>Crítico</span><b id="b-critico">1</b></div><div class="bar-track"><div class="bar-fill" id="bf-critico" style="background:var(--red-400);width:25%"></div></div></div>
+          <div class="bar-block"><div class="bar-label"><span>Alto</span><b id="b-alto">2</b></div><div class="bar-track"><div class="bar-fill" id="bf-alto" style="background:var(--amber-400);width:50%"></div></div></div>
+          <div class="bar-block"><div class="bar-label"><span>Medio</span><b id="b-medio">1</b></div><div class="bar-track"><div class="bar-fill" id="bf-medio" style="background:var(--blue-400);width:25%"></div></div></div>
+          <div class="bar-block"><div class="bar-label"><span>Bajo</span><b id="b-bajo">0</b></div><div class="bar-track"><div class="bar-fill" id="bf-bajo" style="background:var(--gray-200);width:0%"></div></div></div>
+        </div>
+      </div>
+      <div class="side-panel">
+        <div class="side-panel-head">Canales activos</div>
+        <div class="side-panel-body">
+          <div class="channel-list">
+            <div class="ch-row"><i class="ti ti-brand-facebook" style="color:#1877F2" aria-hidden="true"></i> Facebook<span class="ch-count" id="ch-facebook">3</span></div>
+            <div class="ch-row"><i class="ti ti-brand-whatsapp" style="color:#25D366" aria-hidden="true"></i> WhatsApp<span class="ch-count" id="ch-whatsapp">2</span></div>
+            <div class="ch-row"><i class="ti ti-building" style="color:var(--blue-600)" aria-hidden="true"></i> Alcaldía<span class="ch-count" id="ch-alcaldia">2</span></div>
+            <div class="ch-row"><i class="ti ti-news" style="color:var(--amber-400)" aria-hidden="true"></i> Caracol<span class="ch-count" id="ch-caracol">1</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="side-panel">
+        <div class="side-panel-head">Actividad reciente <span>Hoy</span></div>
+        <div class="side-panel-body" style="padding:0 16px;">
+          <div class="activity-list">
+            <div class="act-item"><div class="act-dot-wrap"><div class="act-dot" style="background:var(--red-400)"></div></div><div><div class="act-text">Nuevo crítico: <strong>Hueco Cra 7</strong></div><div class="act-time">hace 2 h · 84 apoyos</div></div></div>
+            <div class="act-item"><div class="act-dot-wrap"><div class="act-dot" style="background:var(--amber-400)"></div></div><div><div class="act-text">Actualizado: <strong>Semáforo Av. Libertadores</strong></div><div class="act-time">hace 5 h</div></div></div>
+            <div class="act-item"><div class="act-dot-wrap"><div class="act-dot" style="background:var(--blue-400)"></div></div><div><div class="act-text">Compartido: <strong>Alumbrado B. Norte</strong></div><div class="act-time">hace 8 h</div></div></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- VISTA FORMULARIO -->
+<div class="page" id="view-form" role="main">
+  <div class="form-wrap">
+    <button class="back-btn" onclick="mostrarLista()" aria-label="Volver a la lista de reportes">
+      <i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a reportes
+    </button>
+    <div class="form-card">
+      <div class="form-card-head">
+        <div class="form-head-info">
+          <div class="form-title">Nuevo reporte ciudadano</div>
+          <div class="form-subtitle">Sharith F. · Yopal, Casanare</div>
+        </div>
+        <div class="form-peticion" id="num-peticion">RC-2026-00000</div>
+      </div>
+      <div class="form-body">
+        <div class="field">
+          <label>¿Cuál es la problemática? *</label>
+          <div class="prob-grid" id="prob-grid" role="radiogroup" aria-label="Tipo de problemática">
+            <button class="prob-btn" data-val="vial" onclick="selProb('vial',this)" role="radio" aria-checked="false"><i class="ti ti-road" aria-hidden="true"></i> Vial</button>
+            <button class="prob-btn" data-val="seguridad" onclick="selProb('seguridad',this)" role="radio" aria-checked="false"><i class="ti ti-shield" aria-hidden="true"></i> Seguridad</button>
+            <button class="prob-btn" data-val="infraestructura" onclick="selProb('infraestructura',this)" role="radio" aria-checked="false"><i class="ti ti-building-bridge" aria-hidden="true"></i> Infraestructura</button>
+            <button class="prob-btn" data-val="ambiente" onclick="selProb('ambiente',this)" role="radio" aria-checked="false"><i class="ti ti-leaf" aria-hidden="true"></i> Ambiente</button>
+            <button class="prob-btn" data-val="salud" onclick="selProb('salud',this)" role="radio" aria-checked="false"><i class="ti ti-heart-rate-monitor" aria-hidden="true"></i> Salud pública</button>
+            <button class="prob-btn" data-val="otro" onclick="selProb('otro',this)" role="radio" aria-checked="false"><i class="ti ti-dots" aria-hidden="true"></i> Otro</button>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="f-ubicacion">Barrio / Dirección *</label>
+            <input type="text" id="f-ubicacion" placeholder="Ej: Cra 7 #15-30, Centro" oninput="actualizarPreview()" />
+          </div>
+          <div class="field">
+            <label for="f-categoria">Categoría (confirmación)</label>
+            <select id="f-categoria">
+              <option value="">Selecciona...</option>
+              <option value="vial">Vial</option>
+              <option value="seguridad">Seguridad</option>
+              <option value="infraestructura">Infraestructura</option>
+              <option value="ambiente">Ambiente</option>
+              <option value="salud">Salud pública</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-titulo">Título del reporte *</label>
+          <input type="text" id="f-titulo" placeholder="Ej: Hueco profundo genera accidentes en la Cra 7" maxlength="120" oninput="actualizarPreview();actualizarContador()" />
+          <div class="char-hint"><span id="char-hint-text"></span><span id="char-titulo">0 / 120</span></div>
+        </div>
+        <div class="field">
+          <label for="f-desc">Descripción detallada *</label>
+          <textarea id="f-desc" placeholder="Describe el problema: qué es, dónde exactamente, desde cuándo ocurre y qué impacto tiene en la comunidad..." oninput="actualizarPreview()"></textarea>
+        </div>
+        <div class="field">
+          <label>Nivel de gravedad *</label>
+          <div class="grav-grid" role="radiogroup" aria-label="Nivel de gravedad">
+            <button class="grav-btn" id="g-critico" onclick="selGrav('critico')" role="radio" aria-checked="false"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Crítico</button>
+            <button class="grav-btn" id="g-alto" onclick="selGrav('alto')" role="radio" aria-checked="false"><i class="ti ti-alert-circle" aria-hidden="true"></i> Alto</button>
+            <button class="grav-btn sel-medio" id="g-medio" onclick="selGrav('medio')" role="radio" aria-checked="true"><i class="ti ti-info-circle" aria-hidden="true"></i> Medio</button>
+            <button class="grav-btn" id="g-bajo" onclick="selGrav('bajo')" role="radio" aria-checked="false"><i class="ti ti-circle-check" aria-hidden="true"></i> Bajo</button>
+          </div>
+          <div class="grav-hint" id="grav-hint" role="status">Medio — problema latente pero no urgente</div>
+        </div>
+        <div class="field">
+          <label>Foto o evidencia (opcional)</label>
+          <div class="upload-zone" onclick="document.getElementById('f-foto').click()" role="button" tabindex="0" aria-label="Seleccionar archivo de evidencia" onkeypress="if(event.key==='Enter')document.getElementById('f-foto').click()">
+            <i class="ti ti-photo" aria-hidden="true"></i>
+            <p>Toca para seleccionar una imagen o video</p>
+            <input type="file" id="f-foto" accept="image/*,video/*" onchange="mostrarArchivo(this)" />
+          </div>
+          <div class="file-preview" id="file-preview" aria-live="polite"></div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- ─── CANALES DE PUBLICACIÓN ─── -->
+        <div>
+          <div class="section-label" style="margin-bottom:4px;">¿Dónde publicar y compartir?</div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Al publicar, cada canal seleccionado se activará automáticamente.</p>
+          <div class="destinos-grid" role="group" aria-label="Canales de publicación">
+
+            <!-- WhatsApp -->
+            <div class="destino-item on" id="d-whatsapp" onclick="toggleDestino('whatsapp')" role="checkbox" aria-checked="true" tabindex="0" onkeypress="if(event.key==='Enter')toggleDestino('whatsapp')">
+              <i class="ti ti-brand-whatsapp d-icon" aria-hidden="true" style="color:#25D366"></i>
+              <div class="d-info">
+                <span class="d-name">WhatsApp</span>
+                <span class="d-sub">Elige el grupo al enviar</span>
+              </div>
+              <i class="ti ti-check d-check" aria-hidden="true"></i>
+            </div>
+
+            <!-- Facebook -->
+            <div class="destino-item on" id="d-facebook" onclick="toggleDestino('facebook')" role="checkbox" aria-checked="true" tabindex="0" onkeypress="if(event.key==='Enter')toggleDestino('facebook')">
+              <i class="ti ti-brand-facebook d-icon" aria-hidden="true" style="color:#1877F2"></i>
+              <div class="d-info">
+                <span class="d-name">Facebook</span>
+                <span class="d-sub">Grupo Prensa Libre</span>
+              </div>
+              <i class="ti ti-check d-check" aria-hidden="true"></i>
+            </div>
+
+            <!-- Alcaldía -->
+            <div class="destino-item" id="d-alcaldia" onclick="toggleDestino('alcaldia')" role="checkbox" aria-checked="false" tabindex="0" onkeypress="if(event.key==='Enter')toggleDestino('alcaldia')">
+              <i class="ti ti-building d-icon" aria-hidden="true" style="color:#185FA5"></i>
+              <div class="d-info">
+                <span class="d-name">Alcaldía de Yopal</span>
+                <span class="d-sub">contactenos@yopal-casanare.gov.co</span>
+              </div>
+              <i class="ti ti-check d-check" aria-hidden="true"></i>
+            </div>
+
+            <!-- Caracol -->
+            <div class="destino-item" id="d-caracol" onclick="toggleDestino('caracol')" role="checkbox" aria-checked="false" tabindex="0" onkeypress="if(event.key==='Enter')toggleDestino('caracol')">
+              <i class="ti ti-news d-icon" aria-hidden="true" style="color:#E24B4A"></i>
+              <div class="d-info">
+                <span class="d-name">Caracol Noticias</span>
+                <span class="d-sub">servicioaltelevidente@caracoltv.com.co</span>
+              </div>
+              <i class="ti ti-check d-check" aria-hidden="true"></i>
+            </div>
+
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label" style="margin-bottom:10px;">Vista previa del mensaje</div>
+          <div class="preview-box" id="msg-preview" aria-live="polite">Completa el título y descripción para ver la vista previa.</div>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button class="btn-cancel" onclick="mostrarLista()">Cancelar</button>
+        <button class="btn-submit" onclick="enviarReporte()">
+          <i class="ti ti-send" aria-hidden="true"></i> Publicar y compartir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MODAL AUTOMATIZACIÓN ─── -->
+<div class="modal-overlay" id="modal-exito" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
+  <div class="modal-box">
+
+    <!-- Fase 1: progreso -->
+    <div id="fase-publicando" class="fase-wrap">
+      <div class="auto-spinner" aria-hidden="true">
+        <div class="spinner-ring"></div>
+        <i class="ti ti-send spinner-icon"></i>
+      </div>
+      <div class="modal-title" id="modal-title-el" style="margin-bottom:6px;">Publicando tu reporte…</div>
+      <div class="modal-num" id="modal-num">RC-2026-00000</div>
+      <div class="auto-progress-bar"><div class="auto-progress-fill" id="auto-progress-fill"></div></div>
+      <div class="auto-status" id="auto-status">Preparando el mensaje…</div>
+    </div>
+
+    <!-- Fase 2: resultado -->
+    <div id="fase-resultado" class="fase-wrap" style="display:none">
+      <div class="modal-icon-wrap" aria-hidden="true" style="margin-bottom:12px">
+        <i class="ti ti-circle-check"></i>
+      </div>
+      <div class="modal-title">¡Reporte publicado!</div>
+      <div class="modal-num" id="modal-num-res">RC-2026-00000</div>
+      <div class="auto-canales-title">Canales activados automáticamente:</div>
+      <div class="auto-canales-list" id="auto-canales-list"></div>
+      <div class="auto-nota">
+        <i class="ti ti-info-circle" aria-hidden="true"></i>
+        Cada canal se abrió en una nueva pestaña. Si el navegador bloqueó alguno, haz clic en el botón correspondiente para abrirlo manualmente.
+      </div>
+      <button class="btn-volver" onclick="cerrarModal()">Ver mis reportes</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="alert" aria-live="assertive">
+  <i class="ti ti-info-circle" id="toast-icon" aria-hidden="true"></i>
+  <span id="toast-msg">Acción completada</span>
+</div>
+
+<footer aria-hidden="true"></footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, where, onSnapshot, serverTimestamp }
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyB3ngClsFyVZ1welAjjhE9_ntbluGo1M50",
+    authDomain: "reportes-yopal.firebaseapp.com",
+    projectId: "reportes-yopal",
+    storageBucket: "reportes-yopal.firebasestorage.app",
+    messagingSenderId: "381419494351",
+    appId: "1:381419494351:web:947e78e74efe988cc0d0ba",
+    measurementId: "G-7ZHZP2L01N"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db =getFirestore(app);
+  const analytics = getAnalytics(app);
+
+  window.mostrarFormulario = function () {
+  document.getElementById('view-lista').style.display = 'none';
+  document.getElementById('view-form').style.display = 'block';
+  document.getElementById('num-peticion').textContent = generarPeticion();
+  window.scrollTo(0, 0);
+};
+
+/*leer la url*/
+async function cargarReporteDesdeURL() {
+  const id = window.location.pathname.split("/").pop();
+
+  const q = query(
+    collection(db, "reportes"),
+    where("idReporte", "==", id)
+  );
+
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
+    document.body.innerHTML = "<h2>❌ Reporte no encontrado</h2>";
+    return;
+  }
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    mostrarReporte(data);
+  });
+}
+/*GUARDAR REPORTES EN FIREBASE*/
+async function guardarReporteFirebase(data) {
+  try {
+
+    // 🔎 Verificar duplicados
+    const q = query(
+      collection(db, "reportes"),
+      where("hash", "==", data.hash)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if (!snapshot.empty) {
+      mostrarToast("Ya existe un reporte similar ⚠️", true);
+      return null;
+    }
+
+    // 🆔 ID automático o usar peticion si viene
+    const idReporte = data.peticion || generarIdReporte();
+
+    await addDoc(collection(db, "reportes"), {
+      idReporte,
+      peticion: idReporte,
+      hash: data.hash,
+      titulo: data.titulo,
+      categoria: data.categoria,
+      gravedad: data.gravedad,
+      ubicacion: data.ubicacion,
+      desc: data.desc,
+      imagen: data.imagen || null,
+      apoyos: 0,
+      destinos: data.destinos,
+      fecha: serverTimestamp()
+    });
+
+    mostrarToast("Reporte guardado correctamente ✔️", false);
+    return idReporte;
+
+  } catch (error) {
+    console.error(error);
+    mostrarToast("Error guardando el reporte", true);
+  }
+}
+
+/* ══════════════════════════════════════════
+   DATOS DE EJEMPLO
+══════════════════════════════════════════ */
+let reportesData = [
+  {id:1,titulo:'Hueco profundo Cra 7 frente al semáforo',categoria:'vial',gravedad:'critico',ubicacion:'Yopal, Cra 7 Centro',desc:'Hueco de más de 40cm de profundidad frente al semáforo. Ya causó un accidente de moto la semana pasada.',apoyos:84,destinos:['facebook','alcaldia']},
+  {id:2,titulo:'Alumbrado apagado Barrio Norte',categoria:'seguridad',gravedad:'alto',ubicacion:'Yopal, B. Norte',desc:'Tres cuadras sin alumbrado público. Varios robos reportados en la última semana en esa zona.',apoyos:51,destinos:['facebook','whatsapp']},
+  {id:3,titulo:'Semáforo dañado genera trancones',categoria:'infraestructura',gravedad:'alto',ubicacion:'Yopal, Av. Libertadores',desc:'El semáforo en la intersección principal lleva 5 días sin funcionar. Filas de hasta 20 minutos en hora pico.',apoyos:67,destinos:['facebook','whatsapp','caracol']},
+  {id:4,titulo:'Vertedero ilegal Parque Central',categoria:'ambiente',gravedad:'medio',ubicacion:'Yopal, Centro',desc:'Escombros y basura acumulada cerca al parque. Malos olores y presencia de roedores en la zona.',apoyos:23,destinos:['facebook','alcaldia']},
+];
+
+let filtroActual = 'todos';
+let gravActual   = 'medio';
+let probActual   = '';
+let currentImageData = null; // base64/dataURL temporal para la imagen seleccionada
+
+/* ══════════════════════════════════════════
+   CONFIGURACIÓN DE CANALES
+   ↓ Aquí están los únicos valores a editar
+══════════════════════════════════════════ */
+const CANALES = {
+  whatsapp: {
+    icon: 'ti-brand-whatsapp',
+    iconColor: '#25D366',
+    label: 'WhatsApp',
+    getUrl: (data) => {
+      /* Sin número fijo → el usuario elige el grupo al abrir WhatsApp.
+         Si quieres un número fijo, reemplaza wa.me/?text= por:
+         wa.me/573XXXXXXXXX?text=   (57 + número sin 0 inicial) */
+      const msg = encodeURIComponent(construirMensaje(data, 'whatsapp'));
+      return `https://wa.me/?text=${msg}`;
+    },
+    tipo: 'popup'
+  },
+  facebook: {
+    icon: 'ti-brand-facebook',
+    iconColor: '#1877F2',
+    label: 'Facebook — Prensa Libre',
+    getUrl: (data) => {
+      /* Abre el grupo Prensa Libre directamente.
+         Reemplaza el número por el ID real del grupo si es diferente. */
+      return `https://www.facebook.com/groups/prensalibreyopal`;
+    },
+    tipo: 'popup'
+  },
+  alcaldia: {
+    icon: 'ti-building',
+    iconColor: '#185FA5',
+    label: 'Alcaldía de Yopal',
+    getUrl: (data) => {
+      const asunto = encodeURIComponent(`[${data.peticion}] Reporte ciudadano: ${data.titulo}`);
+      const cuerpo = encodeURIComponent(construirMensaje(data, 'email'));
+      /* Correo oficial Alcaldía de Yopal */
+      return `mailto:contactenos@yopal-casanare.gov.co?subject=${asunto}&body=${cuerpo}`;
+    },
+    tipo: 'mailto'
+  },
+  caracol: {
+    icon: 'ti-news',
+    iconColor: '#E24B4A',
+    label: 'Caracol Noticias',
+    getUrl: (data) => {
+      const asunto = encodeURIComponent(`[Reporte ciudadano Yopal] ${data.titulo}`);
+      const cuerpo = encodeURIComponent(construirMensaje(data, 'email'));
+      /* Correo Caracol TV servicio al televidente */
+      return `mailto:servicioaltelevidente@caracoltv.com.co?subject=${asunto}&body=${cuerpo}`;
+    },
+    tipo: 'mailto'
+  }
+};
+
+/* ══════════════════════════════════════════
+   CONSTRUCTOR DE MENSAJES
+══════════════════════════════════════════ */
+function construirMensaje(data, formato) {
+  const gravLabel = {critico:'🔴 CRÍTICO',alto:'🟠 ALTO',medio:'🔵 MEDIO',bajo:'⚪ BAJO'}[data.gravedad] || data.gravedad;
+  const catLabel  = {vial:'Vial',seguridad:'Seguridad',infraestructura:'Infraestructura',ambiente:'Ambiental',salud:'Salud pública',otro:'Otro'}[data.categoria] || data.categoria;
+
+  if (formato === 'whatsapp') {
+    return `🚨 *REPORTE CIUDADANO — YOPAL*\n` +
+      `N° ${data.peticion}\n\n` +
+      `*[${gravLabel}] ${data.titulo}*\n` +
+      `📍 ${data.ubicacion}\n` +
+      `🏷️ Categoría: ${catLabel}\n\n` +
+      `${data.desc}\n\n` +
+      `🔗 Ver reporte: ${data.url}\n` +
+      `_Reportado el ${new Date().toLocaleDateString('es-CO')} vía YopalVial_`;
+  }
+
+  /* email */
+  return `Estimados,\n\n` +
+    `Por medio del presente correo, informo la siguiente problemática ciudadana en el municipio de Yopal, Casanare:\n\n` +
+    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+    `N° DE RADICADO: ${data.peticion}\n` +
+    `FECHA: ${new Date().toLocaleDateString('es-CO')}\n` +
+    `CATEGORÍA: ${catLabel}\n` +
+    `GRAVEDAD: ${gravLabel}\n` +
+    `UBICACIÓN: ${data.ubicacion}\n` +
+    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+    `DESCRIPCIÓN:\n${data.desc}\n\n` +
+    `Solicito respetuosamente atención oportuna a este reporte.\n` +
+    `Puede consultarlo en: ${data.url}\n\n` +
+    `Atentamente,\nCiudadano(a) — Plataforma YopalVial · Yopal, Casanare`;
+}
+
+/* ══════════════════════════════════════════
+   ENVÍO CON AUTOMATIZACIÓN
+══════════════════════════════════════════ */
+async function enviarReporte() {
+  const titulo    = document.getElementById('f-titulo').value.trim();
+  const desc      = document.getElementById('f-desc').value.trim();
+  const categoria = document.getElementById('f-categoria').value;
+  const ubicacion = document.getElementById('f-ubicacion').value.trim();
+
+  if (!titulo || !desc || !categoria || !ubicacion) { mostrarToast('Completa todos los campos obligatorios', true); return; }
+  if (desc.length < 30) { mostrarToast('La descripción debe tener al menos 30 caracteres', true); return; }
+
+  const peticion = document.getElementById('num-peticion').textContent;
+  const url      = `${window.location.origin}${window.location.pathname}?report=${peticion}`;
+  const data     = { titulo, desc, categoria, ubicacion, gravedad: gravActual, peticion, url, imagen: currentImageData };
+
+  const todosCanales = ['whatsapp', 'facebook', 'alcaldia', 'caracol'];
+  const activos = todosCanales.filter(id => {
+    const el = document.getElementById('d-' + id);
+    return el && el.classList.contains('on');
+  });
+
+  if (activos.length === 0) { mostrarToast('Selecciona al menos un canal', true); return; }
+
+
+
+  /* Mostrar modal fase 1 */
+  document.getElementById('fase-publicando').style.display = 'flex';
+  document.getElementById('fase-resultado').style.display  = 'none';
+  document.getElementById('modal-num').textContent = peticion;
+  document.getElementById('modal-exito').classList.add('show');
+
+  const hash = (titulo + ubicacion).toLowerCase();
+
+  await guardarReporteFirebase({
+    titulo,
+    categoria,
+    gravedad: gravActual,
+    ubicacion,
+    desc,
+    destinos: activos,
+    hash,
+    peticion,
+    url,
+    imagen: currentImageData
+  });
+
+  ejecutarAutomatizacion(activos, data);
+}
+
+function ejecutarAutomatizacion(activos, data) {
+  const fill   = document.getElementById('auto-progress-fill');
+  const status = document.getElementById('auto-status');
+  const resultados = [];
+
+  /* Pasos: arranque + un paso por canal + cierre */
+  const pasos = [
+    { pct: 8, msg: 'Registrando reporte…' },
+    ...activos.map((id, i) => ({
+      pct: 8 + Math.round(((i + 1) / activos.length) * 82),
+      msg: `Enviando a ${CANALES[id]?.label || id}…`,
+      canal: id
+    })),
+    { pct: 98, msg: 'Verificando envíos…' }
+  ];
+
+  let paso = 0;
+
+  function avanzar() {
+    if (paso >= pasos.length) {
+      setTimeout(() => mostrarResultado(resultados, data), 420);
+      return;
+    }
+    const p = pasos[paso];
+    fill.style.width  = p.pct + '%';
+    status.textContent = p.msg;
+
+    if (p.canal) {
+      const canal = CANALES[p.canal];
+      if (canal) {
+        const urlCanal = canal.getUrl(data);
+        let abierto = true;
+        if (canal.tipo === 'mailto') {
+          /* mailto abre el cliente de correo nativo — no bloqueado por popups */
+          window.location.href = urlCanal;
+        } else {
+          const win = window.open(urlCanal, '_blank', 'noopener,noreferrer');
+          abierto = !!win;
+        }
+        resultados.push({ id: p.canal, url: urlCanal, abierto, canal });
+      }
+    }
+
+    paso++;
+    setTimeout(avanzar, paso === 1 ? 550 : 750);
+  }
+
+  avanzar();
+}
+/*Escuchar firebase*/
+function escucharReportes() {
+
+  onSnapshot(
+    collection(db, "reportes"),
+    (snapshot) => {
+
+      reportesData = [];
+
+      snapshot.forEach(doc => {
+
+        reportesData.push({
+          id: doc.id,
+          ...doc.data()
+        });
+
+      });
+
+      renderLista();
+      actualizarStats();
+      // Si la URL contiene ?report=... mostrar detalle
+      checkReportQuery();
+    }
+  );
+
+}
+
+function mostrarResultado(resultados, data) {
+  document.getElementById('auto-progress-fill').style.width = '100%';
+  setTimeout(() => {
+    document.getElementById('fase-publicando').style.display = 'none';
+    document.getElementById('fase-resultado').style.display  = 'flex';
+    document.getElementById('modal-num-res').textContent = data.peticion;
+
+    document.getElementById('auto-canales-list').innerHTML = resultados.map(r => {
+      const ok  = r.canal.tipo === 'mailto' ? true : r.abierto;
+      const txt = ok ? '✓ Enviado' : '⚠ Clic para abrir';
+      const cls = ok ? '' : 'pendiente';
+      return `<a class="auto-canal-row" href="${r.url}" target="_blank" rel="noopener noreferrer">
+        <i class="ti ${r.canal.icon} canal-icon" style="color:${r.canal.iconColor}" aria-hidden="true"></i>
+        <span class="canal-label">${r.canal.label}</span>
+        <span class="canal-status ${cls}">${txt}</span>
+      </a>`;
+    }).join('');
+  }, 320);
+}
+
+/* ══════════════════════════════════════════
+   RESTO DE FUNCIONES (sin cambios)
+══════════════════════════════════════════ */
+const iconDestino   = {facebook:'ti-brand-facebook',whatsapp:'ti-brand-whatsapp',alcaldia:'ti-building',caracol:'ti-news'};
+const nombreDestino = {facebook:'Facebook',whatsapp:'WhatsApp',alcaldia:'Alcaldía',caracol:'Caracol'};
+const hints = {
+  critico:'Crítico — riesgo de vida o accidente inminente',
+  alto:'Alto — afecta a muchos ciudadanos diariamente',
+  medio:'Medio — problema latente pero no urgente',
+  bajo:'Bajo — molestia menor, sin urgencia'
+};
+const catLabel = {vial:'Vial',seguridad:'Seguridad',infraestructura:'Infraestructura',ambiente:'Ambiente',salud:'Salud pública',otro:'Otro'};
+
+function actualizarStats() {
+  document.getElementById('stat-total').textContent     = reportesData.length;
+  document.getElementById('stat-criticos').textContent  = reportesData.filter(r => r.gravedad === 'critico').length;
+  document.getElementById('stat-apoyos').textContent    = reportesData.reduce((a, r) => a + r.apoyos, 0);
+  document.getElementById('stat-pendientes').textContent = reportesData.filter(r => r.gravedad !== 'bajo').length;
+  const gravCounts = {critico:0,alto:0,medio:0,bajo:0};
+  reportesData.forEach(r => gravCounts[r.gravedad]++);
+  const max = Math.max(...Object.values(gravCounts), 1);
+  ['critico','alto','medio','bajo'].forEach(g => {
+    document.getElementById('b-'+g).textContent = gravCounts[g];
+    document.getElementById('bf-'+g).style.width = (gravCounts[g] / max * 100) + '%';
+  });
+}
+
+function renderLista() {
+  const q    = document.getElementById('search-input').value.toLowerCase();
+  const cont = document.getElementById('cards-container');
+  const lista = reportesData.filter(r => {
+    const mf = filtroActual === 'todos' ? true : filtroActual === 'critico' ? r.gravedad === 'critico' : r.categoria === filtroActual;
+    const ms = r.titulo.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q);
+    return mf && ms;
+  });
+  if (!lista.length) {
+    cont.innerHTML = `<div class="empty-state" role="status"><i class="ti ti-search-off" aria-hidden="true"></i><p>No hay reportes que coincidan con tu búsqueda.</p></div>` + newCardHTML();
+    return;
+  }
+  cont.innerHTML = lista.map(r => {
+    const destinosHTML = (r.destinos || []).map(d =>
+      `<span class="dest-chip"><i class="ti ${iconDestino[d]||'ti-share'}" aria-hidden="true"></i>${nombreDestino[d]||d}</span>`
+    ).join('');
+    const gravedad = r.gravedad || 'medio';
+    return `<article class="report-card" role="listitem" onclick="mostrarReporte('${r.peticion||r.id}')">
+      <div class="card-accent-strip strip-${gravedad}" aria-hidden="true"></div>
+      <div class="card-inner">
+        ${(r.imagen ? `<div style="margin-bottom:8px"><img src="${r.imagen}" alt="Evidencia" style="width:100%;height:auto;border-radius:8px;object-fit:cover"></div>` : '')}
+        <div class="card-top">
+          <div class="card-title">${r.titulo}</div>
+          <span class="badge badge-${gravedad}" aria-label="Gravedad: ${gravedad}">${gravedad.charAt(0).toUpperCase()+gravedad.slice(1)}</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item"><i class="ti ti-map-pin" aria-hidden="true"></i>${r.ubicacion}</span>
+          <span class="cat-pill">${catLabel[r.categoria]||r.categoria}</span>
+        </div>
+        <div class="card-desc">${r.desc}</div>
+        <div class="card-footer">
+          <div class="card-chips" aria-label="Canales">${destinosHTML}</div>
+          <span class="card-votes"><i class="ti ti-thumb-up" aria-hidden="true"></i>${r.apoyos} apoyos</span>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+  cont.innerHTML += newCardHTML();
+  actualizarStats();
+}
+
+function newCardHTML() {
+  return `<button class="new-card-btn" onclick="mostrarFormulario()" aria-label="Crear nuevo reporte"><i class="ti ti-plus" aria-hidden="true"></i> Crear nuevo reporte</button>`;
+}
+
+function setFiltro(f, el) {
+  filtroActual = f;
+  document.querySelectorAll('.filter-pill').forEach(p => { p.classList.remove('active'); p.setAttribute('aria-pressed','false'); });
+  el.classList.add('active');
+  el.setAttribute('aria-pressed','true');
+  renderLista();
+}
+
+function mostrarFormulario() {
+  document.getElementById('view-lista').style.display = 'none';
+  document.getElementById('view-form').style.display  = 'block';
+  document.getElementById('num-peticion').textContent = generarPeticion();
+  window.scrollTo(0, 0);
+}
+
+function mostrarLista() {
+  document.getElementById('view-form').style.display  = 'none';
+  document.getElementById('view-lista').style.display = 'block';
+  resetFormulario();
+  window.scrollTo(0, 0);
+}
+
+function generarPeticion() {
+  return `RC-${new Date().getFullYear()}-${Math.floor(Math.random()*90000)+10000}`;
+}
+
+function selProb(val, el) {
+  probActual = val;
+  document.querySelectorAll('.prob-btn').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-checked','false'); });
+  el.classList.add('selected');
+  el.setAttribute('aria-checked','true');
+  document.getElementById('f-categoria').value = val;
+  actualizarPreview();
+}
+
+function selGrav(g) {
+  ['critico','alto','medio','bajo'].forEach(x => {
+    document.getElementById('g-'+x).className = 'grav-btn';
+    document.getElementById('g-'+x).setAttribute('aria-checked','false');
+  });
+  document.getElementById('g-'+g).classList.add('sel-'+g);
+  document.getElementById('g-'+g).setAttribute('aria-checked','true');
+  document.getElementById('grav-hint').textContent = hints[g];
+  gravActual = g;
+  actualizarPreview();
+}
+
+function toggleDestino(d) {
+  const el = document.getElementById('d-'+d);
+  el.classList.toggle('on');
+  el.setAttribute('aria-checked', el.classList.contains('on') ? 'true' : 'false');
+  actualizarPreview();
+}
+
+function actualizarContador() {
+  const len = document.getElementById('f-titulo').value.length;
+  document.getElementById('char-titulo').textContent = `${len} / 120`;
+  const hint = document.getElementById('char-hint-text');
+  if (len > 100) { hint.textContent = 'Título largo — sé más conciso'; hint.className = 'warn'; }
+  else { hint.textContent = ''; hint.className = ''; }
+}
+
+function actualizarPreview() {
+  const titulo    = document.getElementById('f-titulo').value.trim();
+  const desc      = document.getElementById('f-desc').value.trim();
+  const ubicacion = document.getElementById('f-ubicacion').value.trim();
+  const peticion  = document.getElementById('num-peticion').textContent;
+  const box       = document.getElementById('msg-preview');
+  if (!titulo && !desc) { box.innerHTML = 'Completa el título y descripción para ver la vista previa.'; return; }
+  const gLabel = {critico:'🔴 CRÍTICO',alto:'🟠 ALTO',medio:'🔵 MEDIO',bajo:'⚪ BAJO'}[gravActual];
+  let html = `<strong>Reporte ciudadano [${gLabel}]</strong><br>`;
+  if (titulo)    html += `${titulo}<br>`;
+  if (ubicacion) html += `<span style="color:var(--muted)">📍 ${ubicacion}</span><br>`;
+  if (desc)      html += `<br>${desc.substring(0,150)}${desc.length > 150 ? '…' : ''}`;
+  const publicUrl = `${window.location.origin}${window.location.pathname}?report=${peticion}`;
+  html += `<br><br><span class="preview-link">Ver reporte → ${publicUrl}</span>`;
+  box.innerHTML = html;
+}
+
+function mostrarArchivo(input) {
+  const fp = document.getElementById('file-preview');
+  const file = input.files && input.files[0];
+  if (!file) {
+    currentImageData = null;
+    fp.textContent = '';
+    return;
+  }
+  fp.textContent = `📎 ${file.name}`;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    currentImageData = e.target.result; // dataURL
+    // mostrar miniatura junto al preview
+    const thumb = document.createElement('img');
+    thumb.src = currentImageData;
+    thumb.alt = 'Evidencia';
+    thumb.style.maxWidth = '100%';
+    thumb.style.maxHeight = '160px';
+    thumb.style.display = 'block';
+    thumb.style.marginTop = '8px';
+    // reemplaza cualquier miniatura previa
+    const existing = document.getElementById('file-thumb');
+    if (existing) existing.remove();
+    thumb.id = 'file-thumb';
+    fp.appendChild(thumb);
+    actualizarPreview();
+  };
+  reader.readAsDataURL(file);
+}
+
+function cerrarModal() {
+  document.getElementById('modal-exito').classList.remove('show');
+  mostrarLista();
+}
+
+function mostrarReporte(peticion) {
+  const rep = reportesData.find(r => (r.peticion && r.peticion === peticion) || r.id === peticion || r.idReporte === peticion);
+  if (!rep) {
+    mostrarToast('Reporte no encontrado', true);
+    return;
+  }
+  // crear overlay simple
+  const existing = document.getElementById('overlay-show-report');
+  if (existing) existing.remove();
+  const ov = document.createElement('div');
+  ov.id = 'overlay-show-report';
+  ov.style.position = 'fixed';
+  ov.style.inset = '0';
+  ov.style.background = 'rgba(4,44,83,0.6)';
+  ov.style.display = 'flex';
+  ov.style.alignItems = 'center';
+  ov.style.justifyContent = 'center';
+  ov.style.zIndex = 9999;
+  ov.innerHTML = `
+    <div style="background:#fff;border-radius:12px;max-width:760px;width:100%;padding:20px;max-height:90vh;overflow:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div style="font-weight:700;font-size:18px">${rep.titulo}</div>
+        <button aria-label="Cerrar" id="close-rep" style="background:none;border:none;font-size:18px;cursor:pointer">✖</button>
+      </div>
+      <div style="color:#666;margin-bottom:8px">📍 ${rep.ubicacion} · <strong>${(rep.gravedad||'medio').toUpperCase()}</strong></div>
+      ${rep.imagen ? `<div style="margin-bottom:12px"><img src="${rep.imagen}" alt="Evidencia" style="width:100%;height:auto;border-radius:8px;object-fit:cover"></div>` : ''}
+      <div style="color:#333;line-height:1.6">${rep.desc}</div>
+      <div style="margin-top:14px;display:flex;gap:8px;align-items:center">
+        <a href="${window.location.origin+window.location.pathname}?report=${rep.peticion||rep.id}" style="padding:8px 12px;background:var(--blue-600);color:#fff;border-radius:8px;text-decoration:none">Abrir enlace público</a>
+        <button style="padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:#fff;cursor:pointer" id="close-rep-2">Cerrar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(ov);
+  ov.addEventListener('click', (e) => { if (e.target === ov) ov.remove(); });
+  document.getElementById('close-rep').addEventListener('click', () => ov.remove());
+  document.getElementById('close-rep-2').addEventListener('click', () => ov.remove());
+}
+
+function checkReportQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const r = params.get('report');
+  if (!r) return;
+  // En pantallas pequeñas no abrir automáticamente el overlay (molesto en móvil)
+  if (window.innerWidth && window.innerWidth < 600) {
+    if (document.getElementById('mobile-report-bar')) return;
+    const bar = document.createElement('div');
+    bar.id = 'mobile-report-bar';
+    bar.style.position = 'fixed';
+    bar.style.left = '12px';
+    bar.style.right = '12px';
+    bar.style.bottom = '20px';
+    bar.style.zIndex = 10000;
+    bar.style.background = 'var(--surface)';
+    bar.style.border = '1px solid var(--border)';
+    bar.style.borderRadius = '12px';
+    bar.style.padding = '10px';
+    bar.style.display = 'flex';
+    bar.style.alignItems = 'center';
+    bar.style.gap = '10px';
+    bar.style.boxShadow = '0 8px 22px rgba(4,44,83,0.12)';
+    bar.innerHTML = `<div style="flex:1;color:var(--text);font-weight:600">Se abrió un reporte compartido</div><button id="open-mobile-report" class="btn-primary" style="padding:8px 12px">Ver</button>`;
+    document.body.appendChild(bar);
+    document.getElementById('open-mobile-report').addEventListener('click', () => { mostrarReporte(r); bar.remove(); });
+  } else {
+    mostrarReporte(r);
+  }
+}
+
+function resetFormulario() {
+  ['f-titulo','f-desc','f-ubicacion'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-categoria').value = '';
+  document.getElementById('file-preview').textContent = '';
+  document.getElementById('char-titulo').textContent = '0 / 120';
+  document.getElementById('char-hint-text').textContent = '';
+  probActual = '';
+  document.querySelectorAll('.prob-btn').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-checked','false'); });
+  selGrav('medio');
+  /* WhatsApp y Facebook activos por defecto; Alcaldía y Caracol desactivados */
+  ['whatsapp','facebook','alcaldia','caracol'].forEach(d => {
+    const el = document.getElementById('d-'+d);
+    if (!el) return;
+    const on = (d === 'whatsapp' || d === 'facebook');
+    on ? el.classList.add('on') : el.classList.remove('on');
+    el.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+  document.getElementById('msg-preview').textContent = 'Completa el título y descripción para ver la vista previa.';
+}
+
+function mostrarToast(msg, error = false) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  const icon = document.getElementById('toast-icon');
+  icon.className = error ? 'ti ti-alert-circle' : 'ti ti-check';
+  icon.style.color = error ? 'var(--red-400)' : 'var(--green-100)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+document.getElementById('modal-exito').addEventListener('click', function(e) {
+  if (e.target === this) cerrarModal();
+});
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.style.setProperty('--transition', '0.01ms');
+}
+/*generar id*/
+function generarIdReporte() {
+  const año = new Date().getFullYear();
+  const random = Math.floor(10000 + Math.random() * 90000);
+  return `RC-${año}-${random}`;
+}
+escucharReportes();
+// Exponer funciones al scope global para que los manejadores inline funcionen
+window.selProb = selProb;
+window.selGrav = selGrav;
+window.toggleDestino = toggleDestino;
+window.actualizarPreview = actualizarPreview;
+window.actualizarContador = actualizarContador;
+window.mostrarArchivo = mostrarArchivo;
+window.enviarReporte = enviarReporte;
+window.mostrarLista = mostrarLista;
+window.mostrarFormulario = mostrarFormulario;
+window.cerrarModal = cerrarModal;
+window.setFiltro = setFiltro;
+window.resetFormulario = resetFormulario;
+window.mostrarToast = mostrarToast;
+window.mostrarReporte = mostrarReporte;
+window.checkReportQuery = checkReportQuery;
+</script>
+</body>
+</html>

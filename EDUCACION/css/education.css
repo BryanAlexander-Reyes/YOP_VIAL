@@ -1,0 +1,413 @@
+/* ── ESTILOS DEL MÓDULO DE EDUCACIÓN VIAL ── */
+
+.sv-edu-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--sv-blanco);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 10px 30px rgba(12, 45, 61, 0.05);
+  border: 1px solid rgba(12, 45, 61, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Header del Módulo */
+.sv-edu-header {
+  background: linear-gradient(135deg, var(--sv-gris-oscuro) 0%, #164860 100%);
+  color: #fff;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.sv-edu-header h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.sv-edu-header p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Indicador de Pasos (Timeline) */
+.sv-edu-steps {
+  display: flex;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #eef0f2;
+  position: relative;
+  overflow-x: auto;
+  gap: 8px;
+}
+
+.sv-edu-step {
+  flex: 1 0 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.sv-edu-step::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 100%;
+  height: 3px;
+  background: #e1e4e6;
+  z-index: -1;
+}
+
+.sv-edu-step:last-child::after {
+  display: none;
+}
+
+.sv-edu-step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #e1e4e6;
+  color: var(--sv-gris-oscuro);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.sv-edu-step-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sv-gris-oscuro);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Estados de los pasos */
+.sv-edu-step.active {
+  opacity: 1;
+}
+.sv-edu-step.active .sv-edu-step-num {
+  background: var(--sv-naranja);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(10, 114, 232, 0.2);
+}
+
+.sv-edu-step.completed {
+  opacity: 1;
+}
+.sv-edu-step.completed .sv-edu-step-num {
+  background: var(--sv-verde);
+  color: #fff;
+}
+.sv-edu-step.completed::after {
+  background: var(--sv-verde);
+}
+
+.sv-edu-step.locked {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Contenedor de Vistas Activas */
+.sv-edu-view-container {
+  padding: 2.5rem;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sv-edu-view {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
+  width: 100%;
+}
+
+.sv-edu-view.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pantalla Final / Diploma */
+.sv-edu-completion {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.sv-edu-badge {
+  font-size: 5rem;
+  animation: bounce 2s infinite;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.sv-edu-completion h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem;
+  color: var(--sv-gris-oscuro);
+  margin-bottom: 1rem;
+}
+
+.sv-edu-completion p {
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.sv-edu-card-summary {
+  background: #f8f9fa;
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  max-width: 450px;
+  margin: 0 auto 2rem;
+  border: 1px solid #eef0f2;
+}
+
+.sv-edu-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed #ddd;
+}
+.sv-edu-summary-row:last-child {
+  border-bottom: none;
+}
+
+.sv-edu-reset-btn {
+  background: var(--sv-gris-oscuro);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sv-edu-reset-btn:hover {
+  background: #164860;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sv-edu-steps {
+    padding: 1rem;
+    justify-content: flex-start;
+  }
+  .sv-edu-step::after {
+    top: 15px;
+  }
+  .sv-edu-step-num {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .sv-edu-step-label {
+    font-size: 11px;
+  }
+  .sv-edu-view-container {
+    padding: 1.5rem;
+  }
+}
+
+/* ── Tarjetas de Lanzamiento Rápido ── */
+.sv-edu-launch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sv-edu-launch-card {
+  background: var(--sv-blanco);
+  border: 1px solid rgba(12, 45, 61, 0.08);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.sv-edu-launch-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--sv-naranja);
+}
+
+.sv-edu-launch-card:nth-child(2)::before {
+  background: var(--sv-verde);
+}
+
+.sv-edu-launch-card:nth-child(3)::before {
+  background: var(--sv-amarillo);
+}
+
+.sv-edu-launch-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(12, 45, 61, 0.08);
+}
+
+.sv-edu-launch-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+/* Si en el futuro usas <img class="sv-edu-launch-icon"> o <div class="sv-edu-launch-icon"><img/></div> */
+img.sv-edu-launch-icon,
+.sv-edu-launch-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 0.75rem;
+}
+
+.sv-edu-launch-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--sv-gris-oscuro);
+  margin-bottom: 0.5rem;
+}
+
+.sv-edu-launch-desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+}
+
+.sv-edu-launch-btn {
+  background: #f1f3f5;
+  color: var(--sv-gris-oscuro);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.sv-edu-launch-card:hover .sv-edu-launch-btn {
+  background: var(--sv-gris-oscuro);
+  color: #fff;
+}
+
+/* External app embedding */
+
+
+.external-shell {
+  width: 100%;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.external-shell .external-toolbar {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.external-iframe-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+
+/* Maintain 1:1 aspect ratio */
+.external-iframe-wrap::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.external-iframe-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Spinner overlay inside iframe wrap */
+.external-iframe-wrap .iframe-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.6);
+  z-index: 10;
+}
+
+.spinner-dot {
+  width: 16px;
+  height: 16px;
+  margin: 0 6px;
+  background: var(--sv-naranja);
+  border-radius: 50%;
+  animation: spinner-bounce 0.8s infinite ease-in-out;
+}
+.spinner-dot:nth-child(2) { animation-delay: 0.12s; }
+.spinner-dot:nth-child(3) { animation-delay: 0.24s; }
+@keyframes spinner-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .external-shell .external-toolbar { padding: 0 0.5rem; }
+  .external-iframe-wrap { max-width: 92vw; }
+}
+
