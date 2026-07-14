@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YopalVial - Educacion vial</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/education.css" />
+  <link rel="stylesheet" href="css/quiz.css" />
+  <link rel="stylesheet" href="css/juego.css" />
+</head>
+<body>
+  <div id="sv-view-education">
+    <div style="max-width: 1100px; margin: 2rem auto 1.5rem; padding-left: 1rem;">
+      <button class="quiz-btn quiz-btn-outline" onclick="window.location.href='../index.html'">
+        Volver al Inicio
+      </button>
+    </div>
+
+    <section class="sv-section" id="educacion" style="max-width: 1100px; padding: 0;">
+      <div class="sv-section-tag" style="text-align:center;">Modulo Educativo</div>
+      <div class="sv-section-title" style="text-align:center; margin-bottom: 1.5rem;">Aprende y Juega por la<br>Seguridad Vial</div>
+
+      <div class="sv-edu-launch-grid">
+        <div class="sv-edu-launch-card" onclick="window.navigateToEduStep(0)">
+          <div>
+            <img src="img/quiz1.png" alt="Quiz 1" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Quiz 1</div>
+            <p class="sv-edu-launch-desc">Senales, peatones y habitos basicos.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Comenzar Quiz 1</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="window.navigateToEduStep(1)">
+          <div>
+            <img src="img/quiz2.png" alt="Quiz 2" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Quiz 2</div>
+            <p class="sv-edu-launch-desc">Normas, colores y emergencias.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Comenzar Quiz 2</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="window.navigateToEduStep(2)">
+          <div>
+            <img src="img/juego.png" alt="Sopa de letras" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Sopa de Letras</div>
+            <p class="sv-edu-launch-desc">Busca palabras de seguridad vial en linea recta.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Jugar Sopa</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="window.navigateToEduStep(3)">
+          <div>
+            <img src="img/quiz3.png" alt="Quiz 3" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Quiz 3</div>
+            <p class="sv-edu-launch-desc">Motociclistas, peatones y proteccion.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Comenzar Quiz 3</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="window.navigateToEduStep(4)">
+          <div>
+            <img src="img/quiz4.png" alt="Quiz 4" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Quiz 4</div>
+            <p class="sv-edu-launch-desc">Curvas, lluvia, fatiga y pendientes.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Comenzar Quiz 4</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="window.navigateToEduStep(5)">
+          <div>
+            <img src="img/quiz5.png" alt="Quiz 5" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Quiz 5</div>
+            <p class="sv-edu-launch-desc">Colores de senalizacion y lectura de la via.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Comenzar Quiz 5</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="window.navigateToEduStep(6)">
+          <div>
+            <img src="img/juego.png" alt="Crucigrama vial" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Crucigrama Vial</div>
+            <p class="sv-edu-launch-desc">Responde pistas y arma el tablero final.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Jugar Crucigrama</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="loadExternalApp('trivia_vial/index.html')">
+          <div>
+            <img src="img/quiz5.png" alt="Trivia" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Trivia</div>
+            <p class="sv-edu-launch-desc">Trivia adicional de seguridad vial.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Comenzar Trivia</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="location.href='sp_vial/sp.html'">
+          <div>
+            <img src="img/juego.png" alt="Sopa de letras externa" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Sopa Externa</div>
+            <p class="sv-edu-launch-desc">Otra version de la sopa de letras vial.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Jugar Sopa</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="loadExternalApp('escape_room_vial/index.html')">
+          <div>
+            <img src="img/quiz2.png" alt="Escape Room" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Escape Room</div>
+            <p class="sv-edu-launch-desc">Resuelve acertijos relacionados con la seguridad vial.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Comenzar</button>
+        </div>
+
+        <div class="sv-edu-launch-card" onclick="loadExternalApp('dist/index.html')">
+          <div>
+            <img src="img/juego.png" alt="Crossy Road" class="sv-edu-launch-icon" />
+            <div class="sv-edu-launch-title">Crossy Road</div>
+            <p class="sv-edu-launch-desc">Cruza con prudencia, evita obstáculos y aprende normas viales mientras juegas.</p>
+          </div>
+          <button class="sv-edu-launch-btn">Jugar Crossy Road</button>
+        </div>
+      </div>
+
+      <div class="sv-edu-container">
+        <div class="sv-edu-header">
+          <h2>Aula Virtual YopalVial</h2>
+          <p id="sv-edu-header-desc">Completa los cinco quizzes y los juegos para afianzar tus conocimientos de seguridad vial.</p>
+        </div>
+
+        <div class="sv-edu-steps">
+          <div class="sv-edu-step active" id="step-indicator-0">
+            <div class="sv-edu-step-num">1</div>
+            <div class="sv-edu-step-label">Quiz 1</div>
+          </div>
+          <div class="sv-edu-step locked" id="step-indicator-1">
+            <div class="sv-edu-step-num">2</div>
+            <div class="sv-edu-step-label">Quiz 2</div>
+          </div>
+          <div class="sv-edu-step locked" id="step-indicator-2">
+            <div class="sv-edu-step-num">3</div>
+            <div class="sv-edu-step-label">Sopa</div>
+          </div>
+          <div class="sv-edu-step locked" id="step-indicator-3">
+            <div class="sv-edu-step-num">4</div>
+            <div class="sv-edu-step-label">Quiz 3</div>
+          </div>
+          <div class="sv-edu-step locked" id="step-indicator-4">
+            <div class="sv-edu-step-num">5</div>
+            <div class="sv-edu-step-label">Quiz 4</div>
+          </div>
+          <div class="sv-edu-step locked" id="step-indicator-5">
+            <div class="sv-edu-step-num">6</div>
+            <div class="sv-edu-step-label">Quiz 5</div>
+          </div>
+          <div class="sv-edu-step locked" id="step-indicator-6">
+            <div class="sv-edu-step-num">7</div>
+            <div class="sv-edu-step-label">Crucigrama</div>
+          </div>
+          <div class="sv-edu-step locked" id="step-indicator-7">
+            <div class="sv-edu-step-num">8</div>
+            <div class="sv-edu-step-label">Finalizado</div>
+          </div>
+        </div>
+
+        <div class="sv-edu-view-container">
+          <div class="sv-edu-view active" id="sv-edu-view-0"></div>
+          <div class="sv-edu-view" id="sv-edu-view-1"></div>
+          <div class="sv-edu-view" id="sv-edu-view-2"></div>
+          <div class="sv-edu-view" id="sv-edu-view-3"></div>
+          <div class="sv-edu-view" id="sv-edu-view-4"></div>
+          <div class="sv-edu-view" id="sv-edu-view-5"></div>
+          <div class="sv-edu-view" id="sv-edu-view-6"></div>
+          <div class="sv-edu-view" id="sv-edu-view-7"></div>
+          <div class="sv-edu-view" id="sv-edu-external" style="display:block"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="sv-footer" style="background: transparent; margin-top: 4rem; padding: 0;">
+      <p style="color: #888;">
+        <strong>Alcaldia de Yopal - Secretaria de Transito y Transporte</strong>
+      </p>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/education/quiz1-data.js"></script>
+  <script src="js/education/quiz2-data.js"></script>
+  <script src="js/education/quiz3-data.js"></script>
+  <script src="js/education/quiz4-data.js"></script>
+  <script src="js/education/quiz5-data.js"></script>
+  <script src="js/education/juego1.js"></script>
+  <script src="js/education/controller.js"></script>
+</body>
+</html>

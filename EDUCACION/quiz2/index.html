@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguridad Vial – Yopal, Casanare</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="header-badge">Yopal · Casanare</div>
+  <h1>Cuestionario de seguridad vial</h1>
+  <p>Pon a prueba tus conocimientos sobre las normas de tránsito y ayuda a reducir la accidentalidad en nuestras vías.</p>
+</header>
+
+<main>
+
+  <!-- Pantalla del quiz -->
+  <div id="quiz-screen">
+
+    <div class="tip-banner" id="tip-banner">
+      <div class="tip-icon">💡</div>
+      <div class="tip-body">
+        <div class="tip-text" id="tip-text"><strong>¿Sabías que?</strong> …</div>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 5%"></div>
+      </div>
+      <div class="progress-label" id="progress-label">1 / 20</div>
+    </div>
+
+    <div id="q-area"></div>
+
+    <div class="nav-row">
+      <button class="btn btn-outline" id="btn-prev" onclick="navPrev()">← Anterior</button>
+      <button class="btn btn-primary" id="btn-next" onclick="navNext()">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- Pantalla de resultado -->
+  <div id="result-screen">
+    <div class="result-card">
+      <div class="result-trophy" id="res-trophy">🏆</div>
+      <div class="result-score-big" id="res-score">0 / 20</div>
+      <div class="result-denom">respuestas correctas</div>
+      <div class="result-pct-bar-bg">
+        <div class="result-pct-bar-fill" id="res-bar" style="width: 0%"></div>
+      </div>
+      <div class="result-stats">
+        <span class="stat-pill stat-correct" id="res-correctas">✓ 0 correctas</span>
+        <span class="stat-pill stat-wrong"   id="res-incorrectas">✗ 0 incorrectas</span>
+        <span class="stat-pill stat-pct"     id="res-pct">0 %</span>
+      </div>
+      <div class="result-msg" id="res-msg"></div>
+      <div class="result-btns">
+        <button class="btn-reiniciar" onclick="restart()">🔄 Volver a intentar</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Proyecto de concientización vial &nbsp;·&nbsp; <span>Grupo Beyond Develop</span> &nbsp;·&nbsp; Yopal, Casanare
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
