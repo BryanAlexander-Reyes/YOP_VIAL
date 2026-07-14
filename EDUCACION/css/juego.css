@@ -1,0 +1,186 @@
+/* ── ESTILOS PARA LA SOPA DE LETRAS LLANERA ── */
+
+.juego-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.juego-instruction {
+  background: linear-gradient(135deg, rgba(29, 158, 117, 0.08) 0%, rgba(10, 114, 232, 0.05) 100%);
+  border-left: 4px solid var(--sv-verde);
+  padding: 12px 16px;
+  border-radius: var(--border-radius-md);
+  color: #1c523c;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+/* Tablero y Contenido */
+.juego-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .juego-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.juego-board-wrap {
+  background: #f8f9fa;
+  border: 2px dashed #ced4da;
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+}
+
+.juego-grid {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 4px;
+}
+
+.juego-letter-btn {
+  aspect-ratio: 1;
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sv-gris-oscuro);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  padding: 0;
+  transition: all 0.2s ease;
+  min-width: 24px;
+}
+
+.juego-letter-btn:hover {
+  background: #fff3cd;
+  border-color: #ffe066;
+  transform: scale(1.08);
+}
+
+.juego-letter-btn.selected {
+  background: var(--sv-naranja) !important;
+  color: #fff !important;
+  border-color: var(--sv-naranja) !important;
+  box-shadow: 0 0 8px rgba(10, 114, 232, 0.3);
+}
+
+.juego-letter-btn.found {
+  background: var(--sv-verde) !important;
+  color: #fff !important;
+  border-color: var(--sv-verde) !important;
+  box-shadow: 0 0 10px rgba(29, 158, 117, 0.2);
+  animation: juegoPulse 0.5s ease;
+}
+
+@keyframes juegoPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Barra Lateral (Lista de Palabras) */
+.juego-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.juego-words-card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.juego-words-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sv-gris-oscuro);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.juego-words-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .juego-words-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.juego-word-item {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--sv-gris-oscuro);
+  border-left: 3px solid #ced4da;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.juego-word-item.found {
+  background: #d3f9d8;
+  color: #2b8a3e;
+  border-left-color: var(--sv-verde);
+  text-decoration: line-through;
+  opacity: 0.85;
+}
+
+.juego-word-item.found::after {
+  content: '✓';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: var(--sv-verde);
+}
+
+/* Modals / Feedback en vivo de la palabra llanera */
+.juego-tip-box {
+  background: #e7f5ff;
+  border: 1px solid #a5d8ff;
+  border-radius: var(--border-radius-md);
+  padding: 12px;
+  margin-top: 10px;
+  animation: slideDown 0.3s ease;
+}
+
+.juego-tip-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #0b72e8;
+  margin-bottom: 2px;
+}
+
+.juego-tip-desc {
+  font-size: 12.5px;
+  color: #343a40;
+  line-height: 1.4;
+}
+
+.juego-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}

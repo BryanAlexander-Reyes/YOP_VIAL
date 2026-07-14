@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YopalVial — Seguridad Vial en Yopal, Casanare</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="" href="">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav class="sv-nav">
+    <div class="sv-nav-logo"><img src="assets/logo.png" alt="Logo YopalVial">Yop<span>Vial</span></div>
+    <button class="sv-menu-btn" id="menuBtn">
+  <i class="fas fa-bars"></i>
+</button>
+    <div class="sv-nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="EDUCACION/index.html">Educación</a>
+      <a href="#normas">Normas</a>
+      <a href="#zonas">Zonas de riesgo</a>
+      <a href="#consejos">Consejos</a>
+      <a href="#emergencias">Emergencias</a>
+    </div>
+    <button class="sv-nav-cta" id="btnReporte">Reportar incidente</button>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="sv-hero fade-up" id="inicio">
+    <div class="sv-hero-tag">Municipio de Yopal · Casanare</div>
+    <h1>Muévete<br>con <em>seguridad</em><br>en Yopal</h1>
+    <p>La seguridad vial es responsabilidad de todos. Conoce las normas, identifica las zonas de riesgo y actúa con precaución en nuestras vías.</p>
+    <div class="sv-hero-btns">
+      <a href="#normas"><button class="sv-btn-prim">Ver normas de tránsito</button></a>
+      <a href="#emergencias"><button class="sv-btn-sec">Números de emergencia →</button></a>
+      <a href="PQR/reportes-ciudadanos.html"><button class="sv-btn-sec">Reportar incidente →</button></a>
+    </div>
+  </section>
+
+  <!-- ══ NORMAS ══ -->
+  <section class="sv-section reveal" id="normas">
+    <div class="sv-section-tag">Reglamento</div>
+    <div class="sv-section-title">Normas clave de<br>tránsito en Yopal</div>
+    <div class="sv-normas-grid">
+
+      <div class="sv-norma-card reveal" style="--card-accent:#E24B4A;">
+        <div class="sv-norma-icon"></div>
+        <div class="sv-norma-title">Casco obligatorio</div>
+        <div class="sv-norma-desc">Conductor y parrillero deben usar casco certificado, sin excepción, en toda la ciudad.</div>
+        <span class="sv-norma-badge" style="--badge-bg:#FCEBEB;--badge-color:#A32D2D;">Infracción grave</span>
+      </div>
+
+      <div class="sv-norma-card reveal" style="--card-accent:#E8530A;">
+        <div class="sv-norma-icon"></div>
+        <div class="sv-norma-title">Alcohol cero</div>
+        <div class="sv-norma-desc">Conducir con cualquier grado de alcohol en sangre está prohibido. Multa y retención del vehículo.</div>
+        <span class="sv-norma-badge" style="--badge-bg:#FAECE7;--badge-color:#993C1D;">Multa alta</span>
+      </div>
+
+      <div class="sv-norma-card reveal" style="--card-accent:#BA7517;">
+        <div class="sv-norma-icon"></div>
+        <div class="sv-norma-title">Sin celular al volante</div>
+        <div class="sv-norma-desc">El uso del teléfono sin manos libres genera comparendo y puntos negativos en la licencia.</div>
+        <span class="sv-norma-badge" style="--badge-bg:#FAEEDA;--badge-color:#633806;">Comparendo</span>
+      </div>
+
+      <div class="sv-norma-card reveal" style="--card-accent:#1D9E75;">
+        <div class="sv-norma-icon"></div>
+        <div class="sv-norma-title">Señales de tránsito</div>
+        <div class="sv-norma-desc">Respetar semáforos, cebras peatonales y señales verticales es obligatorio por el Código Nacional.</div>
+        <span class="sv-norma-badge" style="--badge-bg:#E1F5EE;--badge-color:#0F6E56;">Obligatorio</span>
+      </div>
+
+      <div class="sv-norma-card reveal" style="--card-accent:#3C3489;">
+        <div class="sv-norma-icon"></div>
+        <div class="sv-norma-title">Cinturón siempre</div>
+        <div class="sv-norma-desc">Conductor y todos los pasajeros deben llevar cinturón abrochado, incluso en trayectos cortos.</div>
+        <span class="sv-norma-badge" style="--badge-bg:#EEEDFE;--badge-color:#3C3489;">Multa leve</span>
+      </div>
+
+      <div class="sv-norma-card reveal" style="--card-accent:#185FA5;">
+        <div class="sv-norma-icon"></div>
+        <div class="sv-norma-title">Zonas escolares</div>
+        <div class="sv-norma-desc">Velocidad máxima de 30 km/h frente a colegios e instituciones educativas en horario escolar.</div>
+        <span class="sv-norma-badge" style="--badge-bg:#E6F1FB;--badge-color:#0C447C;">30 km/h máx.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NUEVA SECCIÓN: DETALLE AMPLIADO DE NORMAS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="sv-section reveal" id="normas-detalle">
+    <div class="sv-section-tag">Información ampliada</div>
+    <div class="sv-section-title">Todo lo que debes saber<br>sobre las normas de tránsito</div>
+    
+    <!-- Subsección: Límites de velocidad -->
+    <div style="margin-bottom: 60px;">
+      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; color: #000000; margin-bottom: 30px; font-weight: 600;">
+        <i class="fas fa-tachometer-alt" style="color: #E8530A; margin-right: 12px;"></i>Límites de velocidad en Yopal
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+        <div class="reveal" style="background: rgba(255,255,255,0.04); border-radius: 20px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="font-size: 3rem; font-weight: 800; color: #E24B4A; font-family: 'Syne', sans-serif;">30<span style="font-size: 1.2rem;"> km/h</span></div>
+          <div style="font-weight: 600; font-size: 1.1rem; margin-top: 8px; color: #000;">Zonas escolares</div>
+          <div style="color: rgba(0,0,0,0.6); font-size: 0.9rem; margin-top: 6px;">En horario de entrada y salida de estudiantes.</div>
+        </div>
+        <div class="reveal" style="background: rgba(255,255,255,0.04); border-radius: 20px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="font-size: 3rem; font-weight: 800; color: #EF9F27; font-family: 'Syne', sans-serif;">40<span style="font-size: 1.2rem;"> km/h</span></div>
+          <div style="font-weight: 600; font-size: 1.1rem; margin-top: 8px; color: #000;">Calles y avenidas urbanas</div>
+          <div style="color: rgba(0,0,0,0.6); font-size: 0.9rem; margin-top: 6px;">Zonas residenciales y comerciales dentro del perímetro urbano.</div>
+        </div>
+        <div class="reveal" style="background: rgba(255,255,255,0.04); border-radius: 20px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="font-size: 3rem; font-weight: 800; color: #1D9E75; font-family: 'Syne', sans-serif;">80<span style="font-size: 1.2rem;"> km/h</span></div>
+          <div style="font-weight: 600; font-size: 1.1rem; margin-top: 8px; color: #000;">Vías interurbanas</div>
+          <div style="color: rgba(0,0,0,0.6); font-size: 0.9rem; margin-top: 6px;">Carreteras como la vía a Villanueva o a Aguazul.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subsección: Documentos obligatorios -->
+    <div style="margin-bottom: 60px;">
+      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; color: #000; margin-bottom: 30px; font-weight: 600;">
+        <i class="fas fa-id-card" style="color: #3C3489; margin-right: 12px;"></i>Documentos obligatorios para circular
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div class="reveal" style="background: rgba(255,255,255,0.14); border-left: 4px solid #3C3489; border-radius: 0 16px 16px 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.18);">
+          <i class="fas fa-address-card" style="color: #3C3489; font-size: 1.3rem; margin-bottom: 10px;"></i>
+          <div style="font-weight: 600; font-size: 1.1rem; color: #000;">Licencia de conducción</div>
+          <div style="color: rgba(0,0,0,0.9); font-size: 0.95rem; margin-top: 5px;">Vigente, categoría adecuada al vehículo y sin suspensiones activas.</div>
+        </div>
+        <div class="reveal" style="background: rgba(255,255,255,0.14); border-left: 4px solid #1D9E75; border-radius: 0 16px 16px 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.18);">
+          <i class="fas fa-car" style="color: #1D9E75; font-size: 1.3rem; margin-bottom: 10px;"></i>
+          <div style="font-weight: 600; font-size: 1.1rem; color: #000;">SOAT vigente</div>
+          <div style="color: rgba(0,0,0,0.9); font-size: 0.95rem; margin-top: 5px;">Seguro Obligatorio de Accidentes de Tránsito. Debe estar impreso o en formato digital.</div>
+        </div>
+        <div class="reveal" style="background: rgba(255,255,255,0.14); border-left: 4px solid #E8530A; border-radius: 0 16px 16px 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.18);">
+          <i class="fas fa-clipboard-check" style="color: #E8530A; font-size: 1.3rem; margin-bottom: 10px;"></i>
+          <div style="font-weight: 600; font-size: 1.1rem; color: #000;">Revisión técnico-mecánica</div>
+          <div style="color: rgba(0,0,0,0.9); font-size: 0.95rem; margin-top: 5px;">Exigida para vehículos con más de 2 años de antigüedad.</div>
+        </div>
+        <div class="reveal" style="background: rgba(255,255,255,0.14); border-left: 4px solid #185FA5; border-radius: 0 16px 16px 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.18);">
+          <i class="fas fa-file-alt" style="color: #185FA5; font-size: 1.3rem; margin-bottom: 10px;"></i>
+          <div style="font-weight: 600; font-size: 1.1rem; color: #000;">Tarjeta de propiedad</div>
+          <div style="color: rgba(0,0,0,0.9); font-size: 0.95rem; margin-top: 5px;">También conocida como licencia de tránsito. Original o copia digital autorizada.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subsección: Clasificación de infracciones -->
+    <div style="margin-bottom: 60px;">
+      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; color: #000; margin-bottom: 30px; font-weight: 600;">
+        <i class="fas fa-exclamation-triangle" style="color: #BA7517; margin-right: 12px;"></i>Clasificación de infracciones de tránsito
+      </h3>
+      <div class="sv-normas-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="sv-norma-card reveal" style="background: rgba(255,255,255,0.14); --card-accent:#E24B4A; border: 1px solid rgba(255,255,255,0.18);">
+          <div style="font-size: 2rem; font-weight: 800; color: #E24B4A; font-family: 'Syne', sans-serif; margin-bottom: 8px;">Gravísimas</div>
+          <div style="color: rgba(0,0,0,0.95); font-size: 0.95rem; line-height: 1.6;">
+            <p style="margin: 0 0 8px 0;">• Conducir en estado de embriaguez</p>
+            <p style="margin: 0 0 8px 0;">• Exceso de velocidad en más de 30 km/h</p>
+            <p style="margin: 0 0 8px 0;">• No detenerse en semáforo en rojo</p>
+            <p style="margin: 0;">• Adelantar en curva o doble línea</p>
+          </div>
+          <span class="sv-norma-badge" style="--badge-bg:#FCEBEB;--badge-color:#A32D2D;">Multa: 45 SMDLV</span>
+        </div>
+        <div class="sv-norma-card reveal" style="background: rgba(255,255,255,0.14); --card-accent:#EF9F27; border: 1px solid rgba(255,255,255,0.18);">
+          <div style="font-size: 2rem; font-weight: 800; color: #EF9F27; font-family: 'Syne', sans-serif; margin-bottom: 8px;">Graves</div>
+          <div style="color: rgba(0,0,0,0.95); font-size: 0.95rem; line-height: 1.6;">
+            <p style="margin: 0 0 8px 0;">• No usar cinturón de seguridad</p>
+            <p style="margin: 0 0 8px 0;">• Conducir sin casco (motos)</p>
+            <p style="margin: 0 0 8px 0;">• Usar celular al conducir</p>
+            <p style="margin: 0;">• Estacionar en zona prohibida</p>
+          </div>
+          <span class="sv-norma-badge" style="--badge-bg:#FAEEDA;--badge-color:#633806;">Multa: 15 SMDLV</span>
+        </div>
+        <div class="sv-norma-card reveal" style="background: rgba(255,255,255,0.14); --card-accent:#1D9E75; border: 1px solid rgba(255,255,255,0.18);">
+          <div style="font-size: 2rem; font-weight: 800; color: #1D9E75; font-family: 'Syne', sans-serif; margin-bottom: 8px;">Leves</div>
+          <div style="color: rgba(0,0,0,0.95); font-size: 0.95rem; line-height: 1.6;">
+            <p style="margin: 0 0 8px 0;">• Falta de documentos al día</p>            <p style="margin: 0 0 8px 0;">• Luces fundidas</p>
+            <p style="margin: 0 0 8px 0;">• No usar direccionales</p>
+            <p style="margin: 0;">• Placa en mal estado</p>
+          </div>
+          <span class="sv-norma-badge" style="--badge-bg:#E1F5EE;--badge-color:#0F6E56;">Multa: 4 SMDLV</span>
+        </div>
+      </div>
+      <p style="color: rgba(0,0,0,0.5); font-size: 0.85rem; margin-top: 20px; font-style: italic;">
+        * SMDLV = Salario Mínimo Diario Legal Vigente. Según Ley 769 de 2002 y Ley 2161 de 2021.
+      </p>
+    </div>
+
+    <!-- Subsección: En caso de accidente -->
+    <div>
+      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; color: #000; margin-bottom: 30px; font-weight: 600;">
+        <i class="fas fa-car-crash" style="color: #E24B4A; margin-right: 12px;"></i>¿Qué hacer en caso de accidente de tránsito?
+      </h3>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="reveal" style="display: flex; align-items: flex-start; gap: 16px; background: rgba(255,255,255,0.04); border-radius: 16px; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.06);">
+          <div style="min-width: 40px; height: 40px; background: #E24B4A; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff;">1</div>
+          <div>
+            <div style="font-weight: 600; color: #000; margin-bottom: 4px;">Detén el vehículo y enciende las luces de emergencia</div>
+            <div style="color: rgba(0,0,0,0.6); font-size: 0.95rem;">No abandones el lugar del accidente. Señaliza para evitar más colisiones.</div>
+          </div>
+        </div>
+        <div class="reveal" style="display: flex; align-items: flex-start; gap: 16px; background: rgba(255,255,255,0.04); border-radius: 16px; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.06);">
+          <div style="min-width: 40px; height: 40px; background: #EF9F27; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff;">2</div>
+          <div>
+            <div style="font-weight: 600; color: #000; margin-bottom: 4px;">Auxilia a los heridos y llama a emergencias</div>
+            <div style="color: rgba(0,0,0,0.6); font-size: 0.95rem;">Llama al 123 (Emergencias) y al 125 (Ambulancias). No muevas a una persona lesionada a menos que haya riesgo inminente.</div>
+          </div>
+        </div>
+        <div class="reveal" style="display: flex; align-items: flex-start; gap: 16px; background: rgba(255,255,255,0.04); border-radius: 16px; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.06);">
+          <div style="min-width: 40px; height: 40px; background: #3C3489; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff;">3</div>
+          <div>
+            <div style="font-weight: 600; color: #000000; margin-bottom: 4px;">Intercambia datos con los involucrados</div>
+            <div style="color: rgba(0, 0, 0, 0.6); font-size: 0.95rem;">Nombres, cédulas, números de placa, SOAT y compañías aseguradoras. Toma fotos y videos del lugar.</div>
+          </div>
+        </div>
+        <div class="reveal" style="display: flex; align-items: flex-start; gap: 16px; background: rgba(255,255,255,0.04); border-radius: 16px; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.06);">
+          <div style="min-width: 40px; height: 40px; background: #1D9E75; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff;">4</div>
+          <div>
+            <div style="font-weight: 600; color: #000; margin-bottom: 4px;">Contacta al DITRA y a tu aseguradora</div>
+            <div style="color: rgba(0,0,0,0.6); font-size: 0.95rem;">Comunícate con el +57 310 634 3600 (DITRA Yopal) y reporta el siniestro a tu aseguradora dentro de las 24 horas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FIN NUEVA SECCIÓN -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <!-- ══ ZONAS ══ -->
+  <div class="sv-zonas-bg" id="zonas">
+    <div class="sv-zonas-inner">
+      <div class="sv-section-tag">Mapa de riesgo</div>
+      <div class="sv-section-title">Zonas de alta<br>siniestralidad en Yopal</div>
+      <div class="sv-zonas-grid">
+
+        <div class="sv-zona-card reveal">
+          <div class="sv-zona-peligro">
+            <div class="sv-dot sv-dot-rojo"></div>
+            <span class="sv-zona-riesgo" style="color:#E24B4A;">Riesgo alto</span>
+          </div>
+          <div class="sv-zona-nombre">Anillo Vial</div>
+          <div class="sv-zona-desc">Alta velocidad y cruces peligrosos. Principal corredor de accidentes graves.</div>
+        </div>
+
+        <div class="sv-zona-card reveal">
+          <div class="sv-zona-peligro">
+            <div class="sv-dot sv-dot-rojo"></div>
+            <span class="sv-zona-riesgo" style="color:#E24B4A;">Riesgo alto</span>
+          </div>
+          <div class="sv-zona-nombre">Av. La Campiña</div>
+          <div class="sv-zona-desc">Intersecciones sin semáforos y alto flujo vehicular en horas pico.</div>
+        </div>
+
+        <div class="sv-zona-card reveal">
+          <div class="sv-zona-peligro">
+            <div class="sv-dot sv-dot-amarillo"></div>
+            <span class="sv-zona-riesgo" style="color:#EF9F27;">Riesgo medio</span>
+          </div>
+          <div class="sv-zona-nombre">Barrio El Centro</div>
+          <div class="sv-zona-desc">Concentración de peatones y motos. Precaución permanente recomendada.</div>
+        </div>
+
+        <div class="sv-zona-card reveal">
+          <div class="sv-zona-peligro">
+            <div class="sv-dot sv-dot-rojo"></div>
+            <span class="sv-zona-riesgo" style="color:#E24B4A;">Riesgo alto</span>
+          </div>
+          <div class="sv-zona-nombre">Vía a Villanueva</div>
+          <div class="sv-zona-desc">Tramo interurbano con múltiples puntos ciegos y pavimento deteriorado.</div>
+        </div>
+
+        <div class="sv-zona-card reveal">
+          <div class="sv-zona-peligro">
+            <div class="sv-dot sv-dot-amarillo"></div>
+            <span class="sv-zona-riesgo" style="color:#EF9F27;">Riesgo medio</span>
+          </div>
+          <div class="sv-zona-nombre">Glorieta Principal</div>
+          <div class="sv-zona-desc">Rotonda con señalización insuficiente. Frecuentes choques laterales.</div>
+        </div>
+
+        <div class="sv-zona-card reveal">
+          <div class="sv-zona-peligro">
+            <div class="sv-dot sv-dot-rojo"></div>
+            <span class="sv-zona-riesgo" style="color:#E24B4A;">Riesgo alto</span>
+          </div>
+          <div class="sv-zona-nombre">Puente sobre el Cravo</div>
+          <div class="sv-zona-desc">Zona de adelantamientos imprudentes. Baja visibilidad nocturna.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TIPS ══ -->
+  <div class="sv-tips-bg" id="consejos">
+    <div class="sv-tips-inner">
+      <div class="sv-section-tag">Consejos prácticos</div>
+      <div class="sv-section-title">Cómo proteger tu vida<br>en las vías de Yopal</div>
+      <div class="sv-tips-list">
+
+        <div class="sv-tip reveal">
+          <div class="sv-tip-num">01</div>
+          <div>
+            <div class="sv-tip-title">Respeta las distancias de seguridad</div>
+            <div class="sv-tip-desc">Mantén una distancia mínima de 3 segundos respecto al vehículo que va delante. En días de lluvia o en carreteras como la vía a Villanueva, aumenta esta distancia para reaccionar con mayor seguridad.</div>
+          </div>
+        </div>
+
+        <div class="sv-tip reveal">
+          <div class="sv-tip-num">02</div>
+          <div>
+            <div class="sv-tip-title">Usa siempre las luces del vehículo</div>
+            <div class="sv-tip-desc">En Yopal, las motos deben circular con luces encendidas las 24 horas. Los automóviles deben usarlas en vías interurbanas.</div>
+          </div>
+        </div>
+
+        <div class="sv-tip reveal">
+          <div class="sv-tip-num">03</div>
+          <div>
+            <div class="sv-tip-title">Atención especial en temporada de lluvias</div>
+            <div class="sv-tip-desc">Entre abril y noviembre, las vías del Casanare se vuelven resbaladizas. Reduce la velocidad un 30% y evita frenadas bruscas.</div>
+          </div>
+        </div>
+
+        <div class="sv-tip reveal">
+          <div class="sv-tip-num">04</div>
+          <div>
+            <div class="sv-tip-title">Revisa tu vehículo regularmente</div>
+            <div class="sv-tip-desc">Verifica frenos, llantas, luces y espejos antes de salir. Un vehículo en mal estado causa el 22% de los accidentes en Yopal.</div>
+          </div>
+        </div>
+
+        <div class="sv-tip reveal">
+          <div class="sv-tip-num">05</div>
+          <div>
+            <div class="sv-tip-title">Si eres peatón, usa los pasos cebra</div>
+            <div class="sv-tip-desc">Cruzar fuera de los pasos habilitados es la segunda causa de atropellamientos en el municipio. Camina siempre por los andenes disponibles.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ══ EMERGENCIAS ══ -->
+  <section class="sv-emergencias" id="emergencias">
+    <div class="sv-section-tag">Líneas de ayuda</div>
+    <div class="sv-section-title">Números de emergencia</div>
+    <div class="sv-emerg-grid">
+
+      <div class="sv-emerg-card sv-emerg-rojo reveal">
+        <span class="sv-emerg-icon"></span>
+        <div class="sv-emerg-name">Emergencias</div>
+        <span class="sv-emerg-num">123</span>
+        <div class="sv-emerg-sub">Línea nacional</div>
+      </div>
+
+      <div class="sv-emerg-card sv-emerg-verde reveal">
+        <span class="sv-emerg-icon"></span>
+        <div class="sv-emerg-name">Ambulancias</div>
+        <span class="sv-emerg-num">125</span>
+        <div class="sv-emerg-sub">Cruz Roja Yopal</div>
+      </div>
+
+      <div class="sv-emerg-card sv-emerg-amarillo reveal">
+        <span class="sv-emerg-icon"></span>
+        <div class="sv-emerg-name">Bomberos</div>
+        <span class="sv-emerg-num">119</span>
+        <div class="sv-emerg-sub">Yopal Casanare</div>
+      </div>
+
+      <div class="sv-emerg-card sv-emerg-naranja reveal">
+        <span class="sv-emerg-icon"></span>
+        <div class="sv-emerg-name">Tránsito</div>
+        <span class="sv-emerg-num">(+57) 310 634 3600</span>
+        <div class="sv-emerg-sub">DITRA Yopal</div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ══ FOOTER ══ -->
+  <footer class="sv-footer">
+    <p>
+      <strong>Alcaldía de Yopal · Secretaría de Tránsito y Transporte</strong><br>
+      Información basada en el Código Nacional de Tránsito · Ley 769 de 2002
+    </p>
+  </footer>
+
+  <!-- JavaScript (al final del body para mejor rendimiento) -->
+  <script src="app.js"></script>
+
+</body>
+</html>

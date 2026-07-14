@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Seguridad Vial — Conoce las Normas de Tránsito</title>
+  <meta name="description" content="Pon a prueba tus conocimientos sobre normas de tránsito, señales viales y conducción segura en Colombia." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ════════════ HEADER ════════════ -->
+  <header class="site-header">
+    <div class="logo-semaforo" aria-hidden="true">
+      <div class="luz rojo"></div>
+      <div class="luz amari"></div>
+      <div class="luz verde"></div>
+    </div>
+    <div class="header-texto">
+      <h1>Seguridad Vial</h1>
+      <p class="subtitulo">Aprende · Practica · Cuídate en la vía</p>
+    </div>
+    <span class="badge-quiz">Quiz Interactivo</span>
+  </header>
+
+  <!-- ════════════ TARJETA QUIZ ════════════ -->
+  <main class="quiz-card" id="quiz-card" role="main">
+
+    <!-- Barra de progreso -->
+    <div class="progreso-barra" role="progressbar"
+         aria-valuemin="0" aria-valuemax="100"
+         aria-label="Progreso del quiz">
+      <div class="progreso-fill" id="barra-progreso" style="width: 0%"></div>
+    </div>
+
+    <!-- ── PANTALLA 1: INICIO ── -->
+    <section class="pantalla activa" id="pantalla-inicio" aria-label="Pantalla de inicio">
+      <div style="padding:48px 40px; text-align:center;">
+
+        <div class="inicio-icono" aria-hidden="true">🛣️</div>
+
+        <h2>¿Cuánto sabes sobre<br>las normas de tránsito?</h2>
+        <p>
+          Este quiz te ayudará a reforzar tus conocimientos sobre señales,
+          velocidades, derechos de vía y conductas seguras en la vía pública.
+          <strong>10 preguntas · Tiempo libre · Aprende con cada respuesta.</strong>
+        </p>
+
+        <!-- Estadísticas del quiz -->
+        <div class="stats-inicio" aria-label="Resumen del quiz">
+          <div class="stat-item">
+            <span class="stat-num">10</span>
+            <span class="stat-label">Preguntas</span>
+          </div>
+          <div class="divider-stat" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num">12</span>
+            <span class="stat-label">Temas</span>
+          </div>
+          <div class="divider-stat" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num">100</span>
+            <span class="stat-label">Pts. máx.</span>
+          </div>
+        </div>
+
+        <!-- Temas cubiertos -->
+        <div class="temas-lista" aria-label="Temas del quiz">
+          <span class="tema-tag">🚦 Señales de Tránsito</span>
+          <span class="tema-tag">🏎️ Velocidades</span>
+          <span class="tema-tag">🚶 Peatones</span>
+          <span class="tema-tag">🍺 Alcohol y Conducción</span>
+          <span class="tema-tag">🔒 Cinturón de Seguridad</span>
+          <span class="tema-tag">📱 Distractores</span>
+          <span class="tema-tag">🚑 Primeros Auxilios</span>
+          <span class="tema-tag">🏍️ Motocicletas</span>
+        </div>
+
+        <button class="btn-primario" id="btn-iniciar" style="font-size:1rem; padding:15px 40px;">
+          Comenzar Quiz →
+        </button>
+      </div>
+    </section>
+
+    <!-- ── PANTALLA 2: PREGUNTAS ── -->
+    <section class="pantalla" id="pantalla-quiz" aria-label="Pregunta del quiz">
+
+      <!-- Meta: categoría + contador -->
+      <div class="quiz-meta">
+        <div class="meta-cat">
+          <span class="cat-icono" id="cat-icono" aria-hidden="true">🚦</span>
+          <span id="cat-nombre">Señales de Tránsito</span>
+        </div>
+        <div class="meta-contador">
+          <span id="contador-actual">1</span>/<span id="contador-total">10</span>
+        </div>
+      </div>
+
+      <!-- Cuerpo de la pregunta -->
+      <div class="quiz-body">
+
+        <p class="pregunta-numero" id="numero-pregunta" aria-live="polite">Pregunta 1 de 10</p>
+
+        <p class="pregunta-texto" id="texto-pregunta">
+          Cargando pregunta...
+        </p>
+
+        <!-- Opciones de respuesta -->
+        <div class="opciones-grid" id="opciones-contenedor" role="group" aria-label="Opciones de respuesta">
+          <!-- Se generan dinámicamente con JS -->
+        </div>
+
+        <!-- Caja de feedback -->
+        <div class="feedback-box" id="feedback-box" role="alert" aria-live="polite" style="display:none;">
+          <!-- Se llena dinámicamente con JS -->
+        </div>
+
+        <!-- Acciones -->
+        <div class="acciones">
+          <button class="btn-primario" id="btn-siguiente" disabled>
+            Siguiente →
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── PANTALLA 3: RESULTADOS ── -->
+    <section class="pantalla" id="pantalla-resultado" aria-label="Resultados del quiz">
+      <div id="contenido-resultado" style="padding:40px 36px; text-align:center;">
+
+        <div class="resultado-trofeo" id="resultado-emoji" aria-hidden="true">🏆</div>
+
+        <h2 id="resultado-titulo">¡Resultado!</h2>
+        <p class="resultado-mensaje" id="resultado-mensaje"></p>
+
+        <!-- Medidor circular SVG -->
+        <div class="medidor-wrap" aria-label="Porcentaje de respuestas correctas">
+          <div class="medidor-contenedor">
+            <svg class="medidor-svg" viewBox="0 0 150 150" width="150" height="150"
+                 aria-hidden="true">
+              <circle class="medidor-fondo"
+                cx="75" cy="75" r="60"
+                stroke-dasharray="377" stroke-dashoffset="0" />
+              <circle class="medidor-arco" id="medidor-arco"
+                cx="75" cy="75" r="60"
+                stroke-dasharray="377" stroke-dashoffset="377"
+                stroke="#2E7D32" />
+              <text x="75" y="70" text-anchor="middle"
+                    class="medidor-texto-pct" id="medidor-pct">0%</text>
+              <text x="75" y="90" text-anchor="middle"
+                    class="medidor-texto-sub">ACIERTOS</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Desglose numérico -->
+        <div class="resultado-desglose" role="list" aria-label="Desglose de resultados">
+          <div class="desglose-item bien" role="listitem">
+            <span class="desglose-num" id="res-correctas">0</span>
+            <span class="desglose-label">Correctas</span>
+          </div>
+          <div class="desglose-item mal" role="listitem">
+            <span class="desglose-num" id="res-incorrectas">0</span>
+            <span class="desglose-label">Incorrectas</span>
+          </div>
+          <div class="desglose-item punt" role="listitem">
+            <span class="desglose-num" id="res-puntaje">0</span>
+            <span class="desglose-label">Puntos</span>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="resultado-acciones">
+          <button class="btn-secundario" id="btn-inicio">
+            ← Inicio
+          </button>
+          <button class="btn-primario" id="btn-reintentar">
+            🔄 Volver a intentar
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="site-footer">
+    <p>Seguridad Vial Colombia · Quiz educativo basado en el Código Nacional de Tránsito (Ley 769 de 2002)</p>
+  </footer>
+
+  <script src="Quiz.java"></script>
+</body>
+</html>
