@@ -192,6 +192,14 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
 .field textarea { resize: vertical; min-height: 104px; line-height: 1.65; }
 .field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23546070' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 36px; cursor: pointer; }
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cat-geo-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: stretch; }
+.cat-geo-row select, .cat-geo-row input { width: 100%; }
+.btn-geo { display: flex; align-items: center; justify-content: center; width: 42px; flex-shrink: 0; border: 1.5px solid var(--border-md); border-radius: var(--radius-sm); background: var(--surface); color: var(--blue-400, #378add); font-size: 17px; cursor: pointer; box-shadow: var(--shadow-sm); transition: border-color var(--transition), background var(--transition), color var(--transition), transform 0.15s; }
+.btn-geo:hover { border-color: var(--blue-400, #378add); background: rgba(55,138,221,0.08); }
+.btn-geo:active { transform: scale(0.94); }
+.btn-geo.is-loading i { animation: geo-spin 0.9s linear infinite; }
+.btn-geo.is-success { border-color: #2ea043; color: #2ea043; }
+@keyframes geo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .char-hint { display: flex; justify-content: space-between; margin-top: 6px; }
 .char-hint span { font-size: 11px; color: var(--muted-lt); }
 .char-hint span.warn { color: var(--amber-600); }
@@ -477,19 +485,22 @@ footer { background: linear-gradient(90deg, var(--blue-900) 0%, var(--blue-600) 
         <div class="row2">
           <div class="field">
             <label for="f-ubicacion">Barrio / Dirección *</label>
-            <input type="text" id="f-ubicacion" placeholder="Ej: Cra 7 #15-30, Centro" oninput="actualizarPreview()" />
+            <div class="cat-geo-row">
+              <input type="text" id="f-ubicacion" placeholder="Ej: Cra 7 #15-30, Centro" oninput="actualizarPreview()" />
+              <button type="button" class="btn-geo" id="btn-geo" onclick="usarUbicacionActual()" title="Usar mi ubicación actual" aria-label="Usar mi ubicación actual">
+                <i class="ti ti-current-location" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
           <div class="field">
-            <label for="f-categoria">Categoría (confirmación)</label>
-            <select id="f-categoria">
-              <option value="">Selecciona...</option>
-              <option value="vial">Vial</option>
-              <option value="seguridad">Seguridad</option>
-              <option value="infraestructura">Infraestructura</option>
-              <option value="ambiente">Ambiente</option>
-              <option value="salud">Salud pública</option>
-              <option value="otro">Otro</option>
-            </select>
+            <label for="f-fecha">Fecha del reporte *</label>
+            <div class="cat-geo-row">
+              <input type="date" id="f-fecha" oninput="actualizarPreview()" />
+              <button type="button" class="btn-geo" id="btn-fecha-hoy" onclick="usarFechaHoy()" title="Usar fecha de hoy" aria-label="Usar fecha de hoy">
+                <i class="ti ti-calendar-event" aria-hidden="true"></i>
+              </button>
+            </div>
+            <input type="hidden" id="f-categoria" value="" />
           </div>
         </div>
         <div class="field">
@@ -834,13 +845,14 @@ async function enviarReporte() {
   const desc      = document.getElementById('f-desc').value.trim();
   const categoria = document.getElementById('f-categoria').value;
   const ubicacion = document.getElementById('f-ubicacion').value.trim();
+  const fecha     = document.getElementById('f-fecha').value;
 
-  if (!titulo || !desc || !categoria || !ubicacion) { mostrarToast('Completa todos los campos obligatorios', true); return; }
+  if (!titulo || !desc || !categoria || !ubicacion || !fecha) { mostrarToast('Completa todos los campos obligatorios', true); return; }
   if (desc.length < 30) { mostrarToast('La descripción debe tener al menos 30 caracteres', true); return; }
 
   const peticion = document.getElementById('num-peticion').textContent;
   const url      = `${window.location.origin}${window.location.pathname}?report=${peticion}`;
-  const data     = { titulo, desc, categoria, ubicacion, gravedad: gravActual, peticion, url, imagen: currentImageData };
+  const data     = { titulo, desc, categoria, ubicacion, fecha, gravedad: gravActual, peticion, url, imagen: currentImageData };
 
   const todosCanales = ['whatsapp', 'facebook', 'alcaldia', 'caracol'];
   const activos = todosCanales.filter(id => {
@@ -947,6 +959,8 @@ function escucharReportes() {
       actualizarStats();
       // Si la URL contiene ?report=... mostrar detalle
       checkReportQuery();
+      // Fecha de hoy por defecto en el formulario
+      usarFechaHoy(true);
     }
   );
 
@@ -1070,6 +1084,52 @@ function generarPeticion() {
   return `RC-${new Date().getFullYear()}-${Math.floor(Math.random()*90000)+10000}`;
 }
 
+function usarFechaHoy(silent) {
+  const input = document.getElementById('f-fecha');
+  const hoy = new Date();
+  const yyyy = hoy.getFullYear();
+  const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+  const dd = String(hoy.getDate()).padStart(2, '0');
+  input.value = `${yyyy}-${mm}-${dd}`;
+  actualizarPreview();
+  if (!silent) mostrarToast('Fecha de hoy aplicada ✔️', false);
+}
+
+function usarUbicacionActual() {
+  const btn = document.getElementById('btn-geo');
+  const input = document.getElementById('f-ubicacion');
+  if (!navigator.geolocation) {
+    mostrarToast('Tu navegador no soporta geolocalización', true);
+    return;
+  }
+  btn.classList.add('is-loading');
+  btn.classList.remove('is-success');
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    const { latitude, longitude } = pos.coords;
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`, { headers: { 'Accept-Language': 'es' } });
+      const data = await res.json();
+      const a = data.address || {};
+      const barrio = a.suburb || a.neighbourhood || a.quarter || a.village || '';
+      const via = a.road || a.pedestrian || '';
+      const partes = [via, barrio].filter(Boolean);
+      input.value = partes.length ? partes.join(', ') : (data.display_name || `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`);
+    } catch (e) {
+      input.value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+      mostrarToast('No se pudo obtener la dirección, se usaron las coordenadas', true);
+    }
+    btn.classList.remove('is-loading');
+    btn.classList.add('is-success');
+    actualizarPreview();
+    mostrarToast('Ubicación actual aplicada ✔️', false);
+  }, (err) => {
+    btn.classList.remove('is-loading');
+    let msg = 'No se pudo obtener tu ubicación';
+    if (err.code === 1) msg = 'Permiso de ubicación denegado';
+    mostrarToast(msg, true);
+  }, { enableHighAccuracy: true, timeout: 10000 });
+}
+
 function selProb(val, el) {
   probActual = val;
   document.querySelectorAll('.prob-btn').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-checked','false'); });
@@ -1110,6 +1170,8 @@ function actualizarPreview() {
   const titulo    = document.getElementById('f-titulo').value.trim();
   const desc      = document.getElementById('f-desc').value.trim();
   const ubicacion = document.getElementById('f-ubicacion').value.trim();
+  const fechaEl   = document.getElementById('f-fecha');
+  const fecha     = fechaEl ? fechaEl.value : '';
   const peticion  = document.getElementById('num-peticion').textContent;
   const box       = document.getElementById('msg-preview');
   if (!titulo && !desc) { box.innerHTML = 'Completa el título y descripción para ver la vista previa.'; return; }
@@ -1117,6 +1179,7 @@ function actualizarPreview() {
   let html = `<strong>Reporte ciudadano [${gLabel}]</strong><br>`;
   if (titulo)    html += `${titulo}<br>`;
   if (ubicacion) html += `<span style="color:var(--muted)">📍 ${ubicacion}</span><br>`;
+  if (fecha)     html += `<span style="color:var(--muted)">📅 ${fecha}</span><br>`;
   if (desc)      html += `<br>${desc.substring(0,150)}${desc.length > 150 ? '…' : ''}`;
   const publicUrl = `${window.location.origin}${window.location.pathname}?report=${peticion}`;
   html += `<br><br><span class="preview-link">Ver reporte → ${publicUrl}</span>`;
@@ -1230,6 +1293,8 @@ function checkReportQuery() {
 function resetFormulario() {
   ['f-titulo','f-desc','f-ubicacion'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('f-categoria').value = '';
+  document.getElementById('btn-geo').classList.remove('is-success');
+  usarFechaHoy(true);
   document.getElementById('file-preview').textContent = '';
   document.getElementById('char-titulo').textContent = '0 / 120';
   document.getElementById('char-hint-text').textContent = '';
@@ -1285,8 +1350,11 @@ window.cerrarModal = cerrarModal;
 window.setFiltro = setFiltro;
 window.resetFormulario = resetFormulario;
 window.mostrarToast = mostrarToast;
+window.usarUbicacionActual = usarUbicacionActual;
+window.usarFechaHoy = usarFechaHoy;
 window.mostrarReporte = mostrarReporte;
 window.checkReportQuery = checkReportQuery;
 </script>
 </body>
 </html>
+
