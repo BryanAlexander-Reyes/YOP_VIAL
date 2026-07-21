@@ -24,6 +24,8 @@
 body {
   position: relative;
   background: var(--sv-fondo);
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
 }
 
 /* LOGO ÚNICO PARA TODA LA WEB */
@@ -87,7 +89,7 @@ body > * {
 /* ── LOGO NAV ── */
 .sv-nav-logo {
   color: var(--sv-blanco);
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: 22px;
 
@@ -104,7 +106,7 @@ body > * {
 
 .sv-nav-logo span {
   color: #ffffff;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: 22px;
 }
@@ -130,7 +132,7 @@ body > * {
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   transition: all .2s;
 }
 
@@ -258,12 +260,12 @@ body > * {
 }
 
 .sv-hero h1 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 800;
+  font-weight: 700;
   color: #fff;
-  line-height: 1.08;
-  letter-spacing: -1.5px;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
   max-width: 620px;
   margin-bottom: 1.5rem;
   position: relative;
@@ -295,7 +297,7 @@ body > * {
   border: none;
   padding: 14px 24px;
   border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -307,7 +309,7 @@ body > * {
   border: none;
   padding: 14px 24px;
   border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -326,7 +328,7 @@ body > * {
 }
 .sv-stat:last-child { border-right: none; }
 .sv-stat-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2.2rem;
   font-weight: 800;
   color: #fff;
@@ -351,7 +353,7 @@ body > * {
   margin-bottom: 0.5rem;
 }
 .sv-section-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.8px;
@@ -383,7 +385,7 @@ body > * {
 }
 .sv-norma-icon { font-size: 26px; margin-bottom: 0.75rem; }
 .sv-norma-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 6px;
@@ -427,7 +429,7 @@ body > * {
 .sv-dot-rojo { background: #E24B4A; }
 .sv-dot-amarillo { background: #EF9F27; }
 .sv-zona-riesgo { font-size: 11px; font-weight: 500; letter-spacing: 0.5px; }
-.sv-zona-nombre { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.sv-zona-nombre { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
 .sv-zona-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
 
 /* ── TIPS ── */
@@ -448,7 +450,7 @@ body > * {
   border: 0.5px solid rgba(29,158,117,0.2);
 }
 .sv-tip-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 800;
   color: var(--sv-verde);
@@ -458,7 +460,7 @@ body > * {
   width: 36px;
   text-align: right;
 }
-.sv-tip-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: var(--sv-gris-oscuro); margin-bottom: 4px; }
+.sv-tip-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; color: var(--sv-gris-oscuro); margin-bottom: 4px; }
 .sv-tip-desc { font-size: 14px; color: #666; line-height: 1.55; }
 
 
@@ -478,7 +480,7 @@ body > * {
 }
 .sv-emerg-card:hover { transform: translateY(-2px); }
 .sv-emerg-icon { font-size: 32px; margin-bottom: 0.75rem; display: block; }
-.sv-emerg-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.sv-emerg-name { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
 .sv-emerg-num { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; display: block; }
 .sv-emerg-sub { font-size: 12px; margin-top: 3px; opacity: 0.75; }
 .sv-emerg-rojo { background: var(--sv-rojo-claro); }
@@ -498,7 +500,7 @@ body > * {
 .sv-campanas-bg { background: rgba(10,114,232,.96); ; padding: 3rem 2rem; text-align: center; }
 .sv-campanas-inner { max-width: 640px; margin: 0 auto; }
 .sv-campanas-inner h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2rem;
   font-weight: 800;
   color: #fff;
@@ -514,7 +516,7 @@ body > * {
   border: none;
   border-radius: 4px;
   font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   outline: none;
 }
 .sv-form-row button {
@@ -525,7 +527,7 @@ body > * {
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
   transition: opacity 0.2s;
   white-space: nowrap;
